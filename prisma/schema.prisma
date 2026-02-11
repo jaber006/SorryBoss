@@ -1,0 +1,150 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// Consultation/booking request
+model Consultation {
+  id                String   @id @default(cuid())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Type of leave
+  leaveType         String   // "personal" or "carer"
+  
+  // Patient/applicant details
+  firstName         String
+  lastName          String
+  email             String
+  phone             String
+  dateOfBirth       DateTime
+  
+  // For carer's leave - person being cared for
+  careRecipientName String?
+  careRelationship  String?  // e.g., "child", "partner", "parent"
+  
+  // Symptoms/reason
+  symptoms          String   // JSON array of symptoms
+  symptomDetails    String?  // Additional details
+  symptomStartDate  DateTime
+  daysRequested     Int      @default(1)
+  
+  // Booking
+  preferredCallTime DateTime
+  timezone          String   @default("Australia/Sydney")
+  
+  // Status flow
+  status            String   @default("pending") // pending, scheduled, in_progress, completed, declined, refunded
+  
+  // Payment
+  stripePaymentIntentId String?
+  paymentStatus     String   @default("pending") // pending, authorized, captured, refunded
+  amountCents       Int      @default(2495)
+  
+  // Pharmacist handling
+  pharmacistId      String?
+  pharmacistNotes   String?
+  declineReason     String?
+  
+  // Certificate
+  certificateId     String?  @unique
+  certificate       Certificate?
+  
+  // Consult record
+  callStartedAt     DateTime?
+  callEndedAt       DateTime?
+  callNotes         String?
+  
+  // Terms acceptance
+  termsAcceptedAt   DateTime
+  termsVersion      String   @default("1.0")
+  
+  @@index([status])
+  @@index([email])
+  @@index([phone])
+  @@index([createdAt])
+}
+
+// Issued certificate
+model Certificate {
+  id              String   @id @default(cuid())
+  createdAt       DateTime @default(now())
+  
+  // Verification code (public, for employers)
+  verificationCode String  @unique
+  
+  // Link to consultation
+  consultationId  String   @unique
+  consultation    Consultation @relation(fields: [consultationId], references: [id])
+  
+  // Certificate details
+  leaveType       String   // "personal" or "carer"
+  patientName     String
+  dateOfBirth     DateTime
+  
+  // For carer's leave
+  careRecipientName String?
+  careRelationship  String?
+  
+  // Certificate validity
+  unfitFrom       DateTime
+  unfitTo         DateTime
+  daysUnfit       Int
+  
+  // Issuing pharmacist
+  pharmacistName  String
+  pharmacistAhpra String
+  
+  // Certificate storage
+  pdfUrl          String?
+  pdfGeneratedAt  DateTime?
+  
+  // Delivery
+  emailedAt       DateTime?
+  emailedTo       String?
+  
+  @@index([verificationCode])
+}
+
+// Pharmacist users (for admin dashboard)
+model Pharmacist {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  email         String   @unique
+  name          String
+  ahpraNumber   String   @unique
+  phone         String?
+  
+  isActive      Boolean  @default(true)
+  isAdmin       Boolean  @default(false)
+  
+  // Auth (simple password hash for now, upgrade to proper auth later)
+  passwordHash  String
+  
+  @@index([email])
+}
+
+// Audit log for compliance
+model AuditLog {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  
+  action        String   // e.g., "consultation.created", "certificate.issued", "payment.captured"
+  entityType    String   // e.g., "Consultation", "Certificate"
+  entityId      String
+  
+  performedBy   String?  // pharmacist ID or "system"
+  ipAddress     String?
+  userAgent     String?
+  
+  details       String?  // JSON with additional context
+  
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}
