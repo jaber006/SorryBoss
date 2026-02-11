@@ -3,7 +3,18 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ArrowRight, Calendar, Clock, AlertCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Calendar, Clock, AlertCircle, CheckCircle } from "lucide-react";
+import dynamic from "next/dynamic";
+
+// Dynamically import PaymentForm to avoid SSR issues with Stripe
+const PaymentForm = dynamic(() => import("@/components/PaymentForm"), {
+  ssr: false,
+  loading: () => (
+    <div className="p-6 rounded-2xl bg-white border border-black/10 animate-pulse">
+      <div className="h-40 bg-gray-100 rounded-xl"></div>
+    </div>
+  ),
+});
 
 const SYMPTOMS = [
   "Cold / Flu symptoms",
@@ -28,9 +39,13 @@ const TIME_SLOTS = [
 
 export default function PersonalBookingPage() {
   const router = useRouter();
-  const [step, setStep] = useState(1); // 1: Details, 2: Symptoms, 3: Time
+  const [step, setStep] = useState(1); // 1: Details, 2: Symptoms, 3: Time, 4: Payment
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  
+  // Payment state
+  const [clientSecret, setClientSecret] = useState("");
+  const [consultationId, setConsultationId] = useState("");
 
   // Form state
   const [form, setForm] = useState({
@@ -110,14 +125,14 @@ export default function PersonalBookingPage() {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleProceedToPayment = async () => {
     if (!validateStep3()) return;
 
     setLoading(true);
     setError("");
 
     try {
-      const response = await fetch("/api/book", {
+      const response = await fetch("/api/book/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -134,12 +149,9 @@ export default function PersonalBookingPage() {
         throw new Error(data.error || "Something went wrong");
       }
 
-      // Redirect to Stripe checkout
-      if (data.checkoutUrl) {
-        window.location.href = data.checkoutUrl;
-      } else {
-        router.push(`/book/confirm/${data.consultationId}`);
-      }
+      setClientSecret(data.clientSecret);
+      setConsultationId(data.consultationId);
+      setStep(4);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
@@ -147,10 +159,17 @@ export default function PersonalBookingPage() {
     }
   };
 
-  // Get tomorrow's date as minimum for booking
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate());
-  const minDate = tomorrow.toISOString().split("T")[0];
+  const handlePaymentSuccess = () => {
+    router.push(`/book/success?consultation_id=${consultationId}`);
+  };
+
+  const handlePaymentError = (errorMessage: string) => {
+    setError(errorMessage);
+  };
+
+  // Get today's date as minimum for booking
+  const today = new Date();
+  const minDate = today.toISOString().split("T")[0];
 
   // Get date 7 days from now as maximum
   const maxDate = new Date();
@@ -173,9 +192,9 @@ export default function PersonalBookingPage() {
 
       <div className="max-w-2xl mx-auto px-6 py-16">
         {/* Progress */}
-        <div className="flex items-center gap-3 mb-12">
-          {["Type", "Details", "Symptoms", "Time"].map((stepName, i) => (
-            <div key={i} className="flex items-center gap-3">
+        <div className="flex items-center gap-2 mb-12 overflow-x-auto">
+          {["Type", "Details", "Symptoms", "Time", "Payment"].map((stepName, i) => (
+            <div key={i} className="flex items-center gap-2 flex-shrink-0">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${
                 i < step ? 'bg-[#3D8B37] text-white' :
                 i === step ? 'bg-[#1A1A1A] text-white' : 
@@ -184,7 +203,7 @@ export default function PersonalBookingPage() {
                 {i < step ? "✓" : i + 1}
               </div>
               <span className={`text-sm hidden sm:block ${i === step ? 'font-medium' : 'text-[#6B6560]'}`}>{stepName}</span>
-              {i < 3 && <div className="w-8 h-px bg-black/10" />}
+              {i < 4 && <div className="w-4 sm:w-8 h-px bg-black/10" />}
             </div>
           ))}
         </div>
@@ -422,39 +441,86 @@ export default function PersonalBookingPage() {
           </div>
         )}
 
+        {/* Step 4: Payment */}
+        {step === 4 && clientSecret && (
+          <div>
+            <h1 className="text-3xl md:text-4xl font-normal tracking-tight mb-3" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              Payment details
+            </h1>
+            <p className="text-[#6B6560] mb-10">
+              Enter your card details to authorize payment. You won&apos;t be charged until your certificate is issued.
+            </p>
+
+            <div className="mb-6 p-4 rounded-xl bg-[#FDF8EE] border border-[#E8B931]/30">
+              <div className="flex items-center gap-3 mb-3">
+                <CheckCircle className="w-5 h-5 text-[#3D8B37]" />
+                <span className="font-medium">Booking confirmed for:</span>
+              </div>
+              <p className="text-sm text-[#6B6560] ml-8">
+                {form.preferredDate} at {form.preferredTime} AEDT
+              </p>
+              <p className="text-sm text-[#6B6560] ml-8">
+                We&apos;ll call {form.phone}
+              </p>
+            </div>
+
+            <PaymentForm
+              clientSecret={clientSecret}
+              consultationId={consultationId}
+              amount={2495}
+              onSuccess={handlePaymentSuccess}
+              onError={handlePaymentError}
+            />
+          </div>
+        )}
+
         {/* Navigation Buttons */}
-        <div className="mt-10 flex justify-between">
-          {step > 1 ? (
+        {step < 4 && (
+          <div className="mt-10 flex justify-between">
+            {step > 1 ? (
+              <button
+                onClick={() => setStep(step - 1)}
+                className="flex items-center gap-2 px-6 py-3 rounded-full text-[#6B6560] hover:text-[#1A1A1A] transition-colors"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                Back
+              </button>
+            ) : (
+              <div />
+            )}
+
+            {step < 3 ? (
+              <button
+                onClick={handleNext}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg font-semibold bg-[#1A1A1A] text-white hover:bg-[#E8B931] hover:text-[#1A1A1A] transition-all duration-300"
+              >
+                Continue
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            ) : (
+              <button
+                onClick={handleProceedToPayment}
+                disabled={loading}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg font-semibold bg-[#E8B931] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? "Processing..." : "Continue to Payment"}
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            )}
+          </div>
+        )}
+
+        {step === 4 && (
+          <div className="mt-6">
             <button
-              onClick={() => setStep(step - 1)}
+              onClick={() => setStep(3)}
               className="flex items-center gap-2 px-6 py-3 rounded-full text-[#6B6560] hover:text-[#1A1A1A] transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
-              Back
+              Back to booking details
             </button>
-          ) : (
-            <div />
-          )}
-
-          {step < 3 ? (
-            <button
-              onClick={handleNext}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg font-semibold bg-[#1A1A1A] text-white hover:bg-[#E8B931] hover:text-[#1A1A1A] transition-all duration-300"
-            >
-              Continue
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          ) : (
-            <button
-              onClick={handleSubmit}
-              disabled={loading}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg font-semibold bg-[#E8B931] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? "Processing..." : "Continue to Payment"}
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </main>
   );
