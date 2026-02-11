@@ -10,8 +10,25 @@ import dynamic from "next/dynamic";
 const PaymentForm = dynamic(() => import("@/components/PaymentForm"), {
   ssr: false,
   loading: () => (
-    <div className="p-6 rounded-2xl bg-white border border-black/10 animate-pulse">
-      <div className="h-40 bg-gray-100 rounded-xl"></div>
+    <div className="grid lg:grid-cols-5 gap-8 animate-pulse">
+      <div className="lg:col-span-3 space-y-6">
+        <div className="bg-white rounded-2xl border border-black/5 p-6">
+          <div className="h-8 bg-gray-100 rounded-lg w-1/3 mb-6"></div>
+          <div className="space-y-4">
+            <div className="h-12 bg-gray-100 rounded-xl"></div>
+            <div className="h-12 bg-gray-100 rounded-xl"></div>
+            <div className="h-12 bg-gray-100 rounded-xl"></div>
+          </div>
+        </div>
+        <div className="h-16 bg-[#E8B931]/20 rounded-2xl"></div>
+      </div>
+      <div className="lg:col-span-2">
+        <div className="bg-white rounded-2xl border border-black/5 p-6 space-y-4">
+          <div className="h-6 bg-gray-100 rounded w-1/2"></div>
+          <div className="h-20 bg-gray-50 rounded-xl"></div>
+          <div className="h-20 bg-gray-50 rounded-xl"></div>
+        </div>
+      </div>
     </div>
   ),
 });
@@ -190,7 +207,7 @@ export default function PersonalBookingPage() {
         </Link>
       </nav>
 
-      <div className="max-w-2xl mx-auto px-6 py-16">
+      <div className={`mx-auto px-6 py-16 ${step === 4 ? 'max-w-5xl' : 'max-w-2xl'}`}>
         {/* Progress */}
         <div className="flex items-center gap-2 mb-12 overflow-x-auto">
           {["Type", "Details", "Symptoms", "Time", "Payment"].map((stepName, i) => (
@@ -443,24 +460,13 @@ export default function PersonalBookingPage() {
 
         {/* Step 4: Payment */}
         {step === 4 && clientSecret && (
-          <div>
-            <h1 className="text-3xl md:text-4xl font-normal tracking-tight mb-3" style={{ fontFamily: "'Instrument Serif', serif" }}>
-              Payment details
-            </h1>
-            <p className="text-[#6B6560] mb-10">
-              Enter your card details to authorize payment. You won&apos;t be charged until your certificate is issued.
-            </p>
-
-            <div className="mb-6 p-4 rounded-xl bg-[#FDF8EE] border border-[#E8B931]/30">
-              <div className="flex items-center gap-3 mb-3">
-                <CheckCircle className="w-5 h-5 text-[#3D8B37]" />
-                <span className="font-medium">Booking confirmed for:</span>
-              </div>
-              <p className="text-sm text-[#6B6560] ml-8">
-                {form.preferredDate} at {form.preferredTime} AEDT
-              </p>
-              <p className="text-sm text-[#6B6560] ml-8">
-                We&apos;ll call {form.phone}
+          <div className="max-w-none -mx-6 px-6 lg:-mx-0 lg:px-0">
+            <div className="mb-8">
+              <h1 className="text-3xl md:text-4xl font-normal tracking-tight mb-3" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                Complete your booking
+              </h1>
+              <p className="text-[#6B6560]">
+                Enter your payment details below. Your card won&apos;t be charged until your certificate is issued.
               </p>
             </div>
 
@@ -468,6 +474,10 @@ export default function PersonalBookingPage() {
               clientSecret={clientSecret}
               consultationId={consultationId}
               amount={2495}
+              customerName={`${form.firstName} ${form.lastName}`}
+              customerPhone={form.phone}
+              appointmentDate={form.preferredDate}
+              appointmentTime={form.preferredTime}
               onSuccess={handlePaymentSuccess}
               onError={handlePaymentError}
             />
