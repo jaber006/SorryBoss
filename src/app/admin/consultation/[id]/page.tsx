@@ -160,6 +160,7 @@ export default function ConsultationDetailPage() {
             consultation.status === "in_progress" ? "bg-purple-500" :
             consultation.status === "completed" ? "bg-green-500" :
             consultation.status === "declined" ? "bg-red-500" :
+            consultation.status === "pending" ? "bg-yellow-500" :
             "bg-blue-500"
           }`}>
             {consultation.status === "in_progress" ? "Call In Progress" : 
@@ -266,11 +267,11 @@ export default function ConsultationDetailPage() {
             </div>
 
             {/* Actions */}
-            {(consultation.status === "scheduled" || consultation.status === "in_progress") && (
+            {(consultation.status === "pending" || consultation.status === "scheduled" || consultation.status === "in_progress") && (
               <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
                 <h3 className="font-semibold">Actions</h3>
 
-                {consultation.status === "scheduled" && (
+                {(consultation.status === "pending" || consultation.status === "scheduled") && (
                   <button
                     onClick={startCall}
                     disabled={actionLoading}
