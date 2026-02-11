@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SorryBoss — Sick Cert in Minutes | Australian Pharmacist Certificates</title>
+<meta name="description" content="Too sick for work? Get an Absence from Work Certificate from an Australian registered pharmacist. No waiting rooms. No $80 GP fees. Phone consult from bed.">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mustard: #E8B931;
+    --dark: #1A1A1A;
+    --cream: #FDF8EE;
+    --warm-gray: #6B6560;
+    --soft-brown: #C4A882;
+    --green-accent: #3D8B37;
+    --red-soft: #D94F4F;
+    --card-bg: #FFFCF5;
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(253, 248, 238, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--dark);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--mustard);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .nav-cta {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 12px 28px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-cta:hover {
+    background: var(--mustard);
+    color: var(--dark);
+    transform: translateY(-1px);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 140px 24px 80px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(232, 185, 49, 0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(61, 139, 55, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 8px 18px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--warm-gray);
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--green-accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    max-width: 800px;
+    animation: fadeUp 0.8s ease 0.1s both;
+    position: relative;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--mustard);
+  }
+
+  .hero-sub {
+    font-size: clamp(17px, 2.2vw, 20px);
+    color: var(--warm-gray);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-top: 24px;
+    animation: fadeUp 0.8s ease 0.2s both;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 48px;
+    animation: fadeUp 0.8s ease 0.3s both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 18px 40px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 600;
+    transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: -0.01em;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--mustard);
+    color: var(--dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(232, 185, 49, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--dark);
+    padding: 18px 40px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500;
+    border: 1.5px solid rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    letter-spacing: -0.01em;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--dark);
+    background: white;
+  }
+
+  .hero-proof {
+    margin-top: 56px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    animation: fadeUp 0.8s ease 0.4s both;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .proof-item {
+    font-size: 14px;
+    color: var(--warm-gray);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .proof-item svg {
+    width: 16px;
+    height: 16px;
+    color: var(--green-accent);
+  }
+
+  .proof-divider {
+    width: 1px;
+    height: 16px;
+    background: rgba(0,0,0,0.12);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== HOW IT WORKS ===== */
+  .section {
+    padding: 100px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--mustard);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 600px;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+
+  .step-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    border-color: rgba(0,0,0,0.1);
+  }
+
+  .step-number {
+    font-family: 'Instrument Serif', serif;
+    font-size: 64px;
+    color: rgba(232, 185, 49, 0.2);
+    line-height: 1;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .step-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .step-card p {
+    font-size: 15px;
+    color: var(--warm-gray);
+    line-height: 1.6;
+  }
+
+  .step-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--green-accent);
+    margin-top: 20px;
+    background: rgba(61, 139, 55, 0.08);
+    padding: 6px 14px;
+    border-radius: 100px;
+  }
+
+  /* ===== PRICING ===== */
+  .pricing-section {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 100px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(232, 185, 49, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .pricing-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+  }
+
+  .pricing-left .section-label {
+    color: var(--mustard);
+  }
+
+  .pricing-left .section-title {
+    color: var(--cream);
+  }
+
+  .price-comparison {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .price-row-label {
+    font-size: 16px;
+    color: rgba(253, 248, 238, 0.6);
+  }
+
+  .price-row-value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 24px;
+  }
+
+  .price-row-value.crossed {
+    text-decoration: line-through;
+    color: rgba(253, 248, 238, 0.3);
+  }
+
+  .pricing-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 48px 40px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .pricing-card .price {
+    font-family: 'Instrument Serif', serif;
+    font-size: 72px;
+    font-weight: 400;
+    color: var(--mustard);
+    line-height: 1;
+  }
+
+  .pricing-card .price-note {
+    font-size: 15px;
+    color: rgba(253, 248, 238, 0.5);
+    margin-top: 8px;
+  }
+
+  .pricing-card .price-desc {
+    font-size: 16px;
+    color: rgba(253, 248, 238, 0.7);
+    margin-top: 24px;
+    line-height: 1.6;
+  }
+
+  .pricing-features {
+    text-align: left;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pricing-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: rgba(253, 248, 238, 0.7);
+  }
+
+  .pricing-feature svg {
+    width: 18px;
+    height: 18px;
+    color: var(--mustard);
+    flex-shrink: 0;
+  }
+
+  .pricing-card .btn-primary {
+    width: 100%;
+    justify-content: center;
+    margin-top: 32px;
+    background: var(--mustard);
+    color: var(--dark);
+  }
+
+  .pricing-card .btn-primary:hover {
+    background: white;
+    box-shadow: 0 8px 30px rgba(255,255,255,0.2);
+  }
+
+  /* ===== FAQ ===== */
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 64px;
+  }
+
+  .faq-item {
+    background: white;
+    border-radius: var(--radius);
+    padding: 32px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .faq-item h4 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .faq-item p {
+    font-size: 15px;
+    color: var(--warm-gray);
+    line-height: 1.65;
+  }
+
+  /* ===== TRUST BAR ===== */
+  .trust-bar {
+    background: white;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 40px 24px;
+  }
+
+  .trust-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--warm-gray);
+  }
+
+  .trust-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(232, 185, 49, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    padding: 120px 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(232, 185, 49, 0.06), transparent);
+    pointer-events: none;
+  }
+
+  .cta-section .section-title {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: clamp(36px, 5vw, 56px);
+  }
+
+  .cta-section .hero-sub {
+    margin: 20px auto 0;
+  }
+
+  .cta-section .btn-primary {
+    margin-top: 40px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 48px 24px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-left {
+    font-size: 13px;
+    color: var(--warm-gray);
+    line-height: 1.6;
+  }
+
+  .footer-legal {
+    font-size: 12px;
+    color: rgba(107, 101, 96, 0.6);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-size: 14px;
+    color: var(--warm-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: var(--dark);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .logo { font-size: 22px; }
+    .nav-cta { padding: 10px 20px; font-size: 14px; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .pricing-inner { grid-template-columns: 1fr; gap: 48px; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .hero { padding: 120px 20px 60px; }
+    .trust-inner { gap: 24px; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+    .section { padding: 64px 20px; }
+    .pricing-section { padding: 64px 20px; }
+  }
+
+  /* ===== SMOOTH SCROLL ===== */
+  html { scroll-behavior: smooth; }
+
+  /* ===== ANIMATIONS ON SCROLL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <span class="logo-dot"></span>
+    SorryBoss
+  </a>
+  <a href="#get-cert" class="nav-cta">Get Your Cert →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">
+    <span class="badge-dot"></span>
+    AHPRA Registered Pharmacist
+  </div>
+  <h1>Too sick for the<br>waiting room<em>?</em></h1>
+  <p class="hero-sub">
+    Get an Absence from Work Certificate from an Australian registered pharmacist. Phone consult from your bed. Certificate emailed in minutes.
+  </p>
+  <div class="hero-cta-group">
+    <a href="#get-cert" class="btn-primary">
+      Get Your Cert
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    <a href="#how" class="btn-secondary">How It Works</a>
+  </div>
+  <div class="hero-proof">
+    <span class="proof-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      Fair Work Act 2009
+    </span>
+    <span class="proof-divider"></span>
+    <span class="proof-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      No cert, no charge
+    </span>
+    <span class="proof-divider"></span>
+    <span class="proof-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      Certificate in minutes
+    </span>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon">🏥</div>
+      AHPRA Registered
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📋</div>
+      Fair Work Compliant
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📱</div>
+      Phone Consult From Bed
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">⚡</div>
+      Cert Emailed Instantly
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔒</div>
+      Private & Confidential
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="reveal">
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">Three steps. Still in your pyjamas.</h2>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card reveal">
+      <div class="step-number">01</div>
+      <h3>Fill in your details</h3>
+      <p>Tell us your name, symptoms, and when you started feeling unwell. Pick a time for your pharmacist to call you back.</p>
+      <span class="step-time">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        2 minutes
+      </span>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-number">02</div>
+      <h3>Quick phone call</h3>
+      <p>Our pharmacist calls you for a brief assessment. No video needed — stay in bed, no need to look presentable. We just need to hear how you're going.</p>
+      <span class="step-time">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        3–5 minutes
+      </span>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-number">03</div>
+      <h3>Certificate emailed</h3>
+      <p>If our pharmacist assesses you as unfit for work, your Absence from Work Certificate is emailed to you immediately. Forward it to your boss and rest up.</p>
+      <span class="step-time">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Instant
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-left reveal">
+      <p class="section-label">Pricing</p>
+      <h2 class="section-title">Skip the queue. Keep your cash.</h2>
+      <div class="price-comparison">
+        <div class="price-row">
+          <span class="price-row-label">Emergency GP visit</span>
+          <span class="price-row-value crossed">$80–120</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row-label">After-hours doctor</span>
+          <span class="price-row-value crossed">$60–95</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row-label">Telehealth GP consult</span>
+          <span class="price-row-value crossed">$40–60</span>
+        </div>
+        <div class="price-row">
+          <span class="price-row-label">SorryBoss</span>
+          <span class="price-row-value" style="color: var(--mustard);">$24.95</span>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-card reveal">
+      <div class="price">$24<span style="font-size:40px">.95</span></div>
+      <p class="price-note">Only charged if a certificate is issued</p>
+      <p class="price-desc">
+        One flat fee. No hidden costs. If our pharmacist can't issue you a certificate, you pay nothing.
+      </p>
+      <div class="pricing-features">
+        <div class="pricing-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Phone assessment by registered pharmacist
+        </div>
+        <div class="pricing-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Certificate emailed immediately
+        </div>
+        <div class="pricing-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Valid under the Fair Work Act 2009
+        </div>
+        <div class="pricing-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Personal leave & carer's leave
+        </div>
+        <div class="pricing-feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          No cert, no charge — guaranteed
+        </div>
+      </div>
+      <a href="#get-cert" class="btn-primary">Get Your Cert Now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="reveal">
+    <p class="section-label">Questions</p>
+    <h2 class="section-title">Everything your boss would ask.</h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item reveal">
+      <h4>Is this actually legit?</h4>
+      <p>Yes. Under the Fair Work Act 2009, registered pharmacists are authorised to issue Absence from Work Certificates as valid evidence of illness for personal leave and carer's leave. Our certificates comply with section 107(3) of the Act.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4>Will my employer accept it?</h4>
+      <p>Most employers accept pharmacist certificates — they're legally recognised under Fair Work. We recommend confirming with your employer beforehand. The certificate includes the pharmacist's AHPRA registration number for verification.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4>How long can the certificate cover?</h4>
+      <p>Pharmacist certificates typically cover 1–2 days for minor ailments like colds, headaches, gastro, and similar conditions. For longer absences or serious conditions, we'll refer you to a GP.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4>What if I'm too sick to talk?</h4>
+      <p>The phone call is brief — usually 3 to 5 minutes. If you can text, you can take the call. We just need to ask a few questions about your symptoms to make a proper assessment.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4>Can I get a cert for carer's leave?</h4>
+      <p>Yes. If you need to care for a sick family or household member, we can issue a carer's leave certificate. The unwell person should ideally be available to speak briefly during the call.</p>
+    </div>
+    <div class="faq-item reveal">
+      <h4>What can't you certify?</h4>
+      <p>We can't issue certificates for pregnancy-related leave, compassionate leave, workers' compensation, or conditions outside a pharmacist's scope. We also can't backdate certificates. In these cases, we'll guide you to the right service.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="get-cert">
+  <div class="reveal">
+    <p class="section-label">Ready?</p>
+    <h2 class="section-title">Feeling crook<em>?</em><br>Sorted in 10 minutes.</h2>
+    <p class="hero-sub">Fill in your details, take a quick call, and get your certificate emailed. All from bed.</p>
+    <a href="#" class="btn-primary" onclick="alert('Booking system coming soon! We\'re launching shortly.'); return false;">
+      Get Your Cert
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <span class="logo" style="font-size: 20px; margin-bottom: 8px;">
+      <span class="logo-dot"></span>
+      SorryBoss
+    </span>
+    <p class="footer-legal">
+      SorryBoss is a service operated by AHPRA-registered pharmacists. Certificates are issued in accordance with the Fair Work Act 2009 (s107). A pharmacist consultation is not a substitute for medical advice. If your symptoms persist or worsen, please see your doctor. ABN provided upon request.
+    </p>
+  </div>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav background on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      nav.style.boxShadow = '0 1px 12px rgba(0,0,0,0.06)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
