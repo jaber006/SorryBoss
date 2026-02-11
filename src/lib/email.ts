@@ -84,6 +84,91 @@ export async function sendCertificateEmail(data: CertificateEmailData): Promise<
   });
 }
 
+export async function sendBookingConfirmationEmail(data: {
+  to: string;
+  firstName: string;
+  phone: string;
+  preferredCallTime: Date;
+  leaveType: string;
+}): Promise<void> {
+  const { to, firstName, phone, preferredCallTime, leaveType } = data;
+
+  const certificateType = leaveType === "carer" ? "Carer's Leave" : "Personal Leave";
+  
+  const formattedTime = preferredCallTime.toLocaleString("en-AU", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "Australia/Sydney",
+  });
+
+  await resend.emails.send({
+    from: process.env.EMAIL_FROM || "SorryBoss <bookings@sorryboss.com.au>",
+    to,
+    subject: "Your SorryBoss Booking is Confirmed ✓",
+    html: `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1A1A1A; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <div style="text-align: center; margin-bottom: 30px;">
+          <span style="display: inline-block; width: 12px; height: 12px; background: #E8B931; border-radius: 50%; margin-right: 8px;"></span>
+          <span style="font-size: 24px; font-weight: bold;">SorryBoss</span>
+        </div>
+
+        <h1 style="font-size: 24px; margin-bottom: 20px;">Booking Confirmed! ✓</h1>
+
+        <p>Hi ${firstName},</p>
+
+        <p>Your ${certificateType} consultation has been booked. Here's what happens next:</p>
+
+        <div style="background: #FDF8EE; border-left: 4px solid #E8B931; padding: 20px; margin: 25px 0; border-radius: 4px;">
+          <p style="margin: 0 0 15px 0; font-size: 14px; color: #6B6560;">Consultation Details</p>
+          <p style="margin: 0 0 10px 0;"><strong>When:</strong> ${formattedTime} AEDT</p>
+          <p style="margin: 0;"><strong>Phone:</strong> We'll call you at ${phone}</p>
+        </div>
+
+        <h2 style="font-size: 18px; margin-top: 30px;">What to expect</h2>
+        <ol style="padding-left: 20px;">
+          <li style="margin-bottom: 10px;">Our pharmacist will call you at your scheduled time</li>
+          <li style="margin-bottom: 10px;">The call takes about 5 minutes</li>
+          <li style="margin-bottom: 10px;">If a certificate is issued, you'll receive it by email immediately</li>
+          <li>Your card is only charged if we issue a certificate</li>
+        </ol>
+
+        <div style="background: #F0FDF4; border: 1px solid #BBF7D0; padding: 15px; border-radius: 8px; margin: 25px 0;">
+          <p style="margin: 0; color: #166534;">
+            <strong>💳 No charge yet</strong> — Your card has been authorized but won't be charged unless we issue your certificate.
+          </p>
+        </div>
+
+        <p style="color: #6B6560;">
+          <strong>Please be available</strong> at your scheduled time. If you miss the call, we'll try again once. 
+          If we can't reach you, your booking will be cancelled and no charge will be made.
+        </p>
+
+        <hr style="border: none; border-top: 1px solid #E0E0E0; margin: 30px 0;">
+
+        <p style="font-size: 12px; color: #999999;">
+          Questions? Reply to this email or contact support@sorryboss.com.au
+        </p>
+
+        <p style="font-size: 12px; color: #999999; margin-top: 20px;">
+          © ${new Date().getFullYear()} SorryBoss. All rights reserved.
+        </p>
+      </body>
+      </html>
+    `,
+  });
+}
+
 export async function sendDeclineEmail(data: {
   to: string;
   firstName: string;

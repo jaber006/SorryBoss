@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import Stripe from "stripe";
+import { sendBookingConfirmationEmail } from "@/lib/email";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2026-01-28.clover",
@@ -71,6 +72,20 @@ export async function GET(request: NextRequest) {
           }),
         },
       });
+
+      // Send booking confirmation email
+      try {
+        await sendBookingConfirmationEmail({
+          to: consultation.email,
+          firstName: consultation.firstName,
+          phone: consultation.phone,
+          preferredCallTime: consultation.preferredCallTime,
+          leaveType: consultation.leaveType,
+        });
+      } catch (emailError) {
+        console.error("Booking confirmation email failed:", emailError);
+        // Don't fail the request if email fails
+      }
     }
 
     return NextResponse.json({
