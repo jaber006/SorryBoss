@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, Phone, CheckCircle, XCircle, Clock, User, Users, Calendar, FileText } from "lucide-react";
+import { ArrowLeft, Phone, CheckCircle, XCircle, Clock, User, Users, Calendar, FileText, Download, Mail } from "lucide-react";
 
 type Consultation = {
   id: string;
@@ -25,6 +25,11 @@ type Consultation = {
   careRelationship: string | null;
   pharmacistNotes: string | null;
   callNotes: string | null;
+  certificate?: {
+    id: string;
+    verificationCode: string;
+    emailedAt: string | null;
+  } | null;
 };
 
 export default function ConsultationDetailPage() {
@@ -327,11 +332,43 @@ export default function ConsultationDetailPage() {
 
             {/* Completed/Declined Status */}
             {consultation.status === "completed" && (
-              <div className="bg-green-50 rounded-xl border border-green-200 p-6">
+              <div className="bg-green-50 rounded-xl border border-green-200 p-6 space-y-4">
                 <div className="flex items-center gap-3 text-green-700">
                   <CheckCircle className="w-6 h-6" />
                   <span className="font-semibold">Certificate Issued</span>
                 </div>
+                {consultation.certificate && (
+                  <>
+                    <p className="text-sm text-green-600">
+                      Code: {consultation.certificate.verificationCode}
+                    </p>
+                    <a
+                      href={`/api/admin/consultation/${consultation.id}/certificate`}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700 transition-colors"
+                    >
+                      <Download className="w-5 h-5" />
+                      Download Certificate
+                    </a>
+                    <a
+                      href={`/api/admin/consultation/${consultation.id}/resend-email`}
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        if (confirm("Resend certificate email to " + consultation.email + "?")) {
+                          const res = await fetch(`/api/admin/consultation/${consultation.id}/resend-email`, { method: "POST" });
+                          if (res.ok) {
+                            alert("Email sent!");
+                          } else {
+                            alert("Failed to send email");
+                          }
+                        }
+                      }}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors cursor-pointer"
+                    >
+                      <Mail className="w-5 h-5" />
+                      Resend Email
+                    </a>
+                  </>
+                )}
               </div>
             )}
 

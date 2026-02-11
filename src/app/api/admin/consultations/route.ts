@@ -23,12 +23,19 @@ export async function GET(request: NextRequest) {
         lastName: true,
         email: true,
         phone: true,
+        dateOfBirth: true,
         symptoms: true,
         preferredCallTime: true,
         status: true,
         paymentStatus: true,
         careRecipientName: true,
         careRelationship: true,
+        certificate: {
+          select: {
+            id: true,
+            verificationCode: true,
+          },
+        },
       },
     });
 

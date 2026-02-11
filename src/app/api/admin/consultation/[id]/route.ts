@@ -10,6 +10,7 @@ export async function GET(
     
     const consultation = await prisma.consultation.findUnique({
       where: { id },
+      include: { certificate: true },
     });
 
     if (!consultation) {
