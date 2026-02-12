@@ -9,9 +9,23 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    slug: "medical-certificate-online-australia",
+    title: "How to Get a Medical Certificate Online in Australia (2026)",
+    excerpt: "Skip the waiting room. Get a medical certificate online in 5 minutes from an AHPRA-registered pharmacist. Here's how.",
+    date: "2026-02-13",
+    readTime: "5 min read",
+  },
+  {
     slug: "pharmacist-sick-certificate-australia",
     title: "Can a Pharmacist Issue a Sick Certificate in Australia?",
     excerpt: "Yes — and it's completely legal under the Fair Work Act. Here's everything you need to know about pharmacist-issued medical certificates.",
+    date: "2026-02-13",
+    readTime: "4 min read",
+  },
+  {
+    slug: "carers-leave-certificate",
+    title: "How to Get a Carer's Leave Certificate in Australia",
+    excerpt: "Need time off to care for a sick family member? Learn how to get a carer's leave certificate quickly and legally.",
     date: "2026-02-13",
     readTime: "4 min read",
   },
