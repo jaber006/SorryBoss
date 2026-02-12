@@ -8,6 +8,7 @@ import { CheckCircle, Clock, Phone, Mail } from "lucide-react";
 function SuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
+  const consultationId = searchParams.get("consultation_id");
   const [booking, setBooking] = useState<{
     firstName: string;
     preferredCallTime: string;
@@ -18,17 +19,31 @@ function SuccessContent() {
 
   useEffect(() => {
     if (sessionId) {
+      // Stripe Checkout flow
       fetch(`/api/book/confirm?session_id=${sessionId}`)
         .then((res) => res.json())
         .then((data) => {
-          setBooking(data);
+          if (!data.error) setBooking(data);
+          setLoading(false);
+        })
+        .catch(() => setLoading(false));
+    } else if (consultationId) {
+      // PaymentIntent flow (embedded form)
+      fetch(`/api/book/confirm-payment`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ consultationId }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (!data.error) setBooking(data);
           setLoading(false);
         })
         .catch(() => setLoading(false));
     } else {
       setLoading(false);
     }
-  }, [sessionId]);
+  }, [sessionId, consultationId]);
 
   const formatDateTime = (dateStr: string) => {
     const date = new Date(dateStr);
