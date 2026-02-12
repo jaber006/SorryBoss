@@ -339,6 +339,16 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
     color: gray,
   });
 
+  yPos -= 15;
+
+  page.drawText("Contact: 0429 664 266", {
+    x: margin,
+    y: yPos,
+    size: 10,
+    font: helvetica,
+    color: gray,
+  });
+
   // Date on right side
   page.drawText(`Date: ${formatDate(data.issuedAt)}`, {
     x: width - margin - 120,
