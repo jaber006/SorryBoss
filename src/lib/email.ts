@@ -204,7 +204,7 @@ export async function sendAdminNotificationEmail(data: {
     // Use as-is
   }
 
-  const adminEmail = process.env.ADMIN_EMAIL || "mohammad@sorryboss.com.au";
+  const adminEmail = process.env.ADMIN_EMAIL || "support@sorryboss.com.au";
 
   await resend.emails.send({
     from: process.env.EMAIL_FROM || "SorryBoss <notifications@sorryboss.com.au>",
