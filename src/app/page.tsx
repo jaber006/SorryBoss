@@ -173,7 +173,7 @@ export default function Home() {
 
           <div className="bg-white/5 border border-white/10 rounded-3xl p-10 text-center backdrop-blur-sm">
             <div className="text-7xl font-normal text-[#E8B931]" style={{ fontFamily: "'Instrument Serif', serif" }}>
-              $24<span className="text-4xl">.95</span>
+              $9<span className="text-4xl">.95</span>
             </div>
             <p className="text-[15px] text-white/50 mt-2">Only charged if a certificate is issued</p>
             <p className="text-white/70 mt-6 leading-relaxed">
@@ -201,6 +201,33 @@ export default function Home() {
             >
               Get Your Cert Now →
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Why $9.95 */}
+      <section className="py-20 px-6 bg-[#FDF8EE]">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#E8B931] mb-4">Why So Cheap?</p>
+          <h2 
+            className="text-3xl md:text-4xl font-normal leading-tight tracking-tight mb-8"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+          >
+            Because getting a sick certificate shouldn&apos;t cost half a day&apos;s pay.
+          </h2>
+          <div className="text-lg text-[#6B6560] leading-relaxed space-y-4">
+            <p>
+              Honestly? We think medical certificates should be <strong className="text-[#1A1A1A]">free</strong>.
+            </p>
+            <p>
+              When you&apos;re sick, the last thing you need is to spend $80 at an emergency GP or wait three hours at a clinic — just to prove you&apos;re unwell.
+            </p>
+            <p>
+              Unfortunately, pharmacist consultations aren&apos;t Medicare-funded like GP visits. So until the government catches up, we&apos;re keeping it as low as we can.
+            </p>
+            <p className="text-[#1A1A1A] font-medium">
+              $9.95. No hidden fees. No cert, no charge.
+            </p>
           </div>
         </div>
       </section>
