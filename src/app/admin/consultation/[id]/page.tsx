@@ -246,16 +246,99 @@ export default function ConsultationDetailPage() {
               </div>
             </div>
 
+            {/* Consultation Checklist - Shows during call */}
+            {consultation.status === "in_progress" && (
+              <div className="bg-amber-50 rounded-xl border border-amber-200 p-6">
+                <h3 className="font-semibold mb-4 text-amber-900">📋 Consultation Checklist</h3>
+                
+                <div className="space-y-4">
+                  {/* Identity Verification */}
+                  <div className="bg-white rounded-lg p-4 border border-amber-100">
+                    <h4 className="font-medium text-sm text-amber-800 mb-3">1. Identity Verification</h4>
+                    <ul className="space-y-2 text-sm text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <input type="checkbox" className="mt-1 rounded" />
+                        <span>"Can you confirm your full name for me?"</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <input type="checkbox" className="mt-1 rounded" />
+                        <span>"And your date of birth?" <strong>(Expected: {formatDate(consultation.dateOfBirth)})</strong></span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Symptom Assessment */}
+                  <div className="bg-white rounded-lg p-4 border border-amber-100">
+                    <h4 className="font-medium text-sm text-amber-800 mb-3">2. Symptom Assessment</h4>
+                    <ul className="space-y-2 text-sm text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <input type="checkbox" className="mt-1 rounded" />
+                        <span>"Can you describe your symptoms?"</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <input type="checkbox" className="mt-1 rounded" />
+                        <span>"When did the symptoms start?"</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <input type="checkbox" className="mt-1 rounded" />
+                        <span>"Have you taken any medication?"</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <input type="checkbox" className="mt-1 rounded" />
+                        <span>"Are symptoms improving, same, or getting worse?"</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Red Flags */}
+                  <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                    <h4 className="font-medium text-sm text-red-800 mb-3">⚠️ Red Flags (Decline if present)</h4>
+                    <ul className="space-y-2 text-sm text-red-700">
+                      <li>• Chest pain or difficulty breathing</li>
+                      <li>• High fever (&gt;39°C) for more than 3 days</li>
+                      <li>• Symptoms requiring hospital/GP attention</li>
+                      <li>• Request for more than 2 days</li>
+                      <li>• Inconsistent answers or suspected fraud</li>
+                    </ul>
+                  </div>
+
+                  {/* Closing */}
+                  <div className="bg-white rounded-lg p-4 border border-amber-100">
+                    <h4 className="font-medium text-sm text-amber-800 mb-3">3. Closing</h4>
+                    <ul className="space-y-2 text-sm text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <input type="checkbox" className="mt-1 rounded" />
+                        <span>"I'll issue a certificate for [X] day(s). You'll receive it by email shortly."</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <input type="checkbox" className="mt-1 rounded" />
+                        <span>"If symptoms worsen, please see a GP."</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Notes */}
             <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h3 className="font-semibold mb-4">Pharmacist Notes</h3>
+              <h3 className="font-semibold mb-4">
+                {consultation.status === "in_progress" ? "📝 Consultation Notes (Record your findings)" : "Pharmacist Notes"}
+              </h3>
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#1A1A1A] focus:ring-2 focus:ring-[#1A1A1A]/10 outline-none transition-all resize-none"
-                rows={4}
-                placeholder="Add notes about the consultation..."
+                rows={consultation.status === "in_progress" ? 6 : 4}
+                placeholder={consultation.status === "in_progress" 
+                  ? "Record consultation details here:\n• Identity confirmed: Yes/No\n• Symptoms described: ...\n• Duration: ...\n• Assessment: ..."
+                  : "Add notes about the consultation..."}
               />
+              {consultation.status === "in_progress" && (
+                <p className="text-xs text-gray-500 mt-2">
+                  These notes are saved with the consultation record for compliance purposes.
+                </p>
+              )}
             </div>
           </div>
 
