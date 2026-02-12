@@ -44,8 +44,15 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
   let yPos = height - 50;
 
   // Header - SorryBoss
-  page.drawText("● SorryBoss", {
-    x: margin,
+  // Draw yellow dot manually
+  page.drawCircle({
+    x: margin + 6,
+    y: yPos + 6,
+    size: 6,
+    color: mustard,
+  });
+  page.drawText("SorryBoss", {
+    x: margin + 18,
     y: yPos,
     size: 22,
     font: helveticaBold,
