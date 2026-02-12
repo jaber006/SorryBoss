@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import Stripe from "stripe";
-import { sendBookingConfirmationEmail } from "@/lib/email";
+import { sendBookingConfirmationEmail, sendAdminNotificationEmail } from "@/lib/email";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2026-01-28.clover",
@@ -38,6 +38,7 @@ export async function GET(request: NextRequest) {
         phone: true,
         preferredCallTime: true,
         leaveType: true,
+        symptoms: true,
       },
     });
 
@@ -84,6 +85,22 @@ export async function GET(request: NextRequest) {
         });
       } catch (emailError) {
         console.error("Booking confirmation email failed:", emailError);
+        // Don't fail the request if email fails
+      }
+
+      // Send admin notification email
+      try {
+        await sendAdminNotificationEmail({
+          firstName: consultation.firstName,
+          lastName: consultation.lastName,
+          phone: consultation.phone,
+          email: consultation.email,
+          preferredCallTime: consultation.preferredCallTime,
+          leaveType: consultation.leaveType,
+          symptoms: consultation.symptoms,
+        });
+      } catch (emailError) {
+        console.error("Admin notification email failed:", emailError);
         // Don't fail the request if email fails
       }
     }

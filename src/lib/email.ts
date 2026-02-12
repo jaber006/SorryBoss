@@ -169,6 +169,95 @@ export async function sendBookingConfirmationEmail(data: {
   });
 }
 
+export async function sendAdminNotificationEmail(data: {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  preferredCallTime: Date;
+  leaveType: string;
+  symptoms: string;
+}): Promise<void> {
+  const { firstName, lastName, phone, email, preferredCallTime, leaveType, symptoms } = data;
+
+  const certificateType = leaveType === "carer" ? "Carer's Leave" : "Personal Leave";
+  
+  const formattedTime = preferredCallTime.toLocaleString("en-AU", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "Australia/Sydney",
+  });
+
+  // Parse symptoms
+  let symptomList = symptoms;
+  try {
+    const parsed = JSON.parse(symptoms);
+    if (Array.isArray(parsed)) {
+      symptomList = parsed.join(", ");
+    }
+  } catch {
+    // Use as-is
+  }
+
+  const adminEmail = process.env.ADMIN_EMAIL || "mohammad@sorryboss.com.au";
+
+  await resend.emails.send({
+    from: process.env.EMAIL_FROM || "SorryBoss <notifications@sorryboss.com.au>",
+    to: adminEmail,
+    subject: `📞 New Booking: ${firstName} ${lastName} - ${certificateType}`,
+    html: `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1A1A1A; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <div style="background: #E8B931; color: #1A1A1A; padding: 15px 20px; border-radius: 8px; margin-bottom: 20px;">
+          <strong>📞 New ${certificateType} Booking</strong>
+        </div>
+
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 10px 0; border-bottom: 1px solid #eee; width: 140px; color: #666;">Patient</td>
+            <td style="padding: 10px 0; border-bottom: 1px solid #eee;"><strong>${firstName} ${lastName}</strong></td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #666;">Phone</td>
+            <td style="padding: 10px 0; border-bottom: 1px solid #eee;"><a href="tel:${phone}" style="color: #3D8B37;">${phone}</a></td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #666;">Email</td>
+            <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${email}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #666;">Call Time</td>
+            <td style="padding: 10px 0; border-bottom: 1px solid #eee;"><strong>${formattedTime} AEDT</strong></td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #666;">Symptoms</td>
+            <td style="padding: 10px 0; border-bottom: 1px solid #eee;">${symptomList}</td>
+          </tr>
+        </table>
+
+        <div style="margin-top: 20px;">
+          <a href="https://sorryboss.com.au/admin" style="display: inline-block; background: #1A1A1A; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px;">View in Admin →</a>
+        </div>
+
+        <p style="margin-top: 30px; font-size: 12px; color: #999;">
+          This is an automated notification from SorryBoss.
+        </p>
+      </body>
+      </html>
+    `,
+  });
+}
+
 export async function sendDeclineEmail(data: {
   to: string;
   firstName: string;

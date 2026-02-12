@@ -45,10 +45,16 @@ export async function POST(
       );
     }
 
-    // Calculate certificate dates
+    // Calculate certificate dates - always starts today (no backdating)
     const unfitFrom = new Date();
-    const unfitTo = new Date();
-    unfitTo.setDate(unfitTo.getDate() + (daysToIssue - 1));
+    unfitFrom.setHours(0, 0, 0, 0); // Start of today
+    
+    const unfitTo = new Date(unfitFrom);
+    unfitTo.setDate(unfitTo.getDate() + (daysToIssue - 1)); // Add days (1 day = same day, 2 days = +1)
+    
+    // Ensure max 2 days
+    const maxDays = 2;
+    const actualDays = Math.min(daysToIssue, maxDays);
 
     // Generate verification code
     const verificationCode = generateVerificationCode();
@@ -65,7 +71,7 @@ export async function POST(
         careRelationship: consultation.careRelationship,
         unfitFrom,
         unfitTo,
-        daysUnfit: daysToIssue,
+        daysUnfit: actualDays,
         pharmacistName: process.env.PHARMACIST_NAME || "Registered Pharmacist",
         pharmacistAhpra: process.env.PHARMACIST_AHPRA || "PHA0000000000",
       },
@@ -108,7 +114,7 @@ export async function POST(
         careRelationship: consultation.careRelationship,
         unfitFrom,
         unfitTo,
-        daysUnfit: daysToIssue,
+        daysUnfit: actualDays,
         pharmacistName: process.env.PHARMACIST_NAME || "Registered Pharmacist",
         pharmacistAhpra: process.env.PHARMACIST_AHPRA || "PHA0000000000",
         issuedAt: new Date(),
@@ -148,7 +154,7 @@ export async function POST(
         details: JSON.stringify({
           consultationId: id,
           verificationCode,
-          daysUnfit: daysToIssue,
+          daysUnfit: actualDays,
         }),
       },
     });

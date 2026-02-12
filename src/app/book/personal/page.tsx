@@ -193,6 +193,27 @@ export default function PersonalBookingPage() {
   maxDate.setDate(maxDate.getDate() + 7);
   const maxDateStr = maxDate.toISOString().split("T")[0];
 
+  // Filter time slots - exclude past times if booking for today
+  const getAvailableTimeSlots = () => {
+    if (form.preferredDate !== minDate) {
+      return TIME_SLOTS; // All slots available for future dates
+    }
+    
+    // For today, filter out past times (with 30 min buffer)
+    const now = new Date();
+    const bufferMinutes = 30;
+    now.setMinutes(now.getMinutes() + bufferMinutes);
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    
+    return TIME_SLOTS.filter(slot => {
+      const [hour, minute] = slot.split(":").map(Number);
+      return hour > currentHour || (hour === currentHour && minute >= currentMinute);
+    });
+  };
+
+  const availableTimeSlots = getAvailableTimeSlots();
+
   return (
     <main className="min-h-screen bg-[#FDF8EE]">
       {/* Nav */}
@@ -411,19 +432,25 @@ export default function PersonalBookingPage() {
                   Select time *
                 </label>
                 <div className="grid grid-cols-4 sm:grid-cols-5 gap-2 max-h-64 overflow-y-auto p-1">
-                  {TIME_SLOTS.map((time) => (
-                    <button
-                      key={time}
-                      onClick={() => updateForm("preferredTime", time)}
-                      className={`px-3 py-2 rounded-lg border text-sm transition-all ${
-                        form.preferredTime === time
-                          ? 'border-[#1A1A1A] bg-[#1A1A1A] text-white'
-                          : 'border-black/10 bg-white hover:border-black/20'
-                      }`}
-                    >
-                      {time}
-                    </button>
-                  ))}
+                  {availableTimeSlots.length > 0 ? (
+                    availableTimeSlots.map((time) => (
+                      <button
+                        key={time}
+                        onClick={() => updateForm("preferredTime", time)}
+                        className={`px-3 py-2 rounded-lg border text-sm transition-all ${
+                          form.preferredTime === time
+                            ? 'border-[#1A1A1A] bg-[#1A1A1A] text-white'
+                            : 'border-black/10 bg-white hover:border-black/20'
+                        }`}
+                      >
+                        {time}
+                      </button>
+                    ))
+                  ) : (
+                    <p className="col-span-full text-center text-[#6B6560] py-4">
+                      No more time slots available today. Please select tomorrow.
+                    </p>
+                  )}
                 </div>
                 <p className="text-xs text-[#6B6560] mt-2">Times shown in AEST/AEDT</p>
               </div>
