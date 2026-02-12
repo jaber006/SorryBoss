@@ -19,7 +19,7 @@ export async function sendCertificateEmail(data: CertificateEmailData): Promise<
     ? [
         {
           filename: `SorryBoss-Certificate-${verificationCode}.pdf`,
-          content: pdfBuffer.toString("base64"),
+          content: pdfBuffer,
         },
       ]
     : [];
