@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { generateCertificatePDF } from "@/lib/certificate";
 
+// Force Node.js runtime for PDFKit compatibility
+export const runtime = "nodejs";
+export const maxDuration = 30;
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

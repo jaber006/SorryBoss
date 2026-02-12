@@ -4,6 +4,10 @@ import Stripe from "stripe";
 import { generateCertificatePDF } from "@/lib/certificate";
 import { sendCertificateEmail } from "@/lib/email";
 
+// Force Node.js runtime for PDFKit compatibility
+export const runtime = "nodejs";
+export const maxDuration = 30;
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2026-01-28.clover",
 });
