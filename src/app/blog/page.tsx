@@ -9,11 +9,32 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    slug: "same-day-medical-certificate",
+    title: "How to Get a Same-Day Medical Certificate (Fast)",
+    excerpt: "Need a medical certificate today? Here's how to get one in 5 minutes — no waiting room, certificate emailed instantly.",
+    date: "2026-02-13",
+    readTime: "3 min read",
+  },
+  {
     slug: "medical-certificate-online-australia",
     title: "How to Get a Medical Certificate Online in Australia (2026)",
     excerpt: "Skip the waiting room. Get a medical certificate online in 5 minutes from an AHPRA-registered pharmacist. Here's how.",
     date: "2026-02-13",
     readTime: "5 min read",
+  },
+  {
+    slug: "do-i-need-medical-certificate-for-one-day",
+    title: "Do I Need a Medical Certificate for 1 Day Off Sick?",
+    excerpt: "When does your employer need a certificate? Learn the rules around sick leave evidence in Australia.",
+    date: "2026-02-13",
+    readTime: "4 min read",
+  },
+  {
+    slug: "sick-leave-rights-australia",
+    title: "Sick Leave Rights in Australia: Complete Guide (2026)",
+    excerpt: "Everything you need to know — how many days, casual entitlements, and what evidence your employer can request.",
+    date: "2026-02-13",
+    readTime: "6 min read",
   },
   {
     slug: "pharmacist-sick-certificate-australia",
