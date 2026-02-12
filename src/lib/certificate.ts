@@ -29,107 +29,70 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
 
   const helvetica = await pdfDoc.embedFont(StandardFonts.Helvetica);
   const helveticaBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
-  const courier = await pdfDoc.embedFont(StandardFonts.Courier);
+  const timesRoman = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+  const timesItalic = await pdfDoc.embedFont(StandardFonts.TimesRomanItalic);
 
   const { width, height } = page.getSize();
-  const margin = 50;
+  const margin = 60;
 
   // Colors
   const dark = rgb(0.1, 0.1, 0.1);
-  const gray = rgb(0.42, 0.40, 0.37);
-  const mustard = rgb(0.91, 0.73, 0.19);
-  const green = rgb(0.24, 0.55, 0.22);
-  const lightGray = rgb(0.6, 0.6, 0.6);
+  const gray = rgb(0.35, 0.35, 0.35);
+  const lightGray = rgb(0.55, 0.55, 0.55);
+  const accentBlue = rgb(0.2, 0.3, 0.5);
 
-  let yPos = height - 50;
+  let yPos = height - 60;
 
-  // Header - SorryBoss
-  // Draw yellow dot manually
-  page.drawCircle({
-    x: margin + 6,
-    y: yPos + 6,
-    size: 6,
-    color: mustard,
-  });
-  page.drawText("SorryBoss", {
-    x: margin + 18,
+  // Header - Professional title
+  const title = data.leaveType === "carer" 
+    ? "CARER'S LEAVE CERTIFICATE" 
+    : "MEDICAL CERTIFICATE";
+  const titleWidth = helveticaBold.widthOfTextAtSize(title, 22);
+  page.drawText(title, {
+    x: (width - titleWidth) / 2,
     y: yPos,
     size: 22,
     font: helveticaBold,
     color: dark,
   });
 
-  yPos -= 18;
-  page.drawText("Absence from Work Certificate", {
-    x: margin,
+  yPos -= 12;
+
+  // Subtitle
+  const subtitle = "Pharmacist Certificate of Illness";
+  const subtitleWidth = timesItalic.widthOfTextAtSize(subtitle, 12);
+  page.drawText(subtitle, {
+    x: (width - subtitleWidth) / 2,
     y: yPos,
-    size: 10,
-    font: helvetica,
+    size: 12,
+    font: timesItalic,
     color: gray,
   });
 
-  // Verification code box (right side)
-  page.drawRectangle({
-    x: width - margin - 130,
-    y: height - 70,
-    width: 130,
-    height: 45,
-    color: rgb(0.96, 0.96, 0.96),
-  });
-
-  page.drawText("Verification Code", {
-    x: width - margin - 125,
-    y: height - 45,
-    size: 8,
-    font: helvetica,
-    color: gray,
-  });
-
-  page.drawText(data.verificationCode, {
-    x: width - margin - 125,
-    y: height - 62,
-    size: 14,
-    font: courier,
-    color: dark,
-  });
-
-  // Yellow line under header
+  // Decorative line under header
   yPos -= 25;
-  page.drawRectangle({
-    x: margin,
-    y: yPos,
-    width: width - margin * 2,
-    height: 2,
-    color: mustard,
+  page.drawLine({
+    start: { x: margin + 100, y: yPos },
+    end: { x: width - margin - 100, y: yPos },
+    thickness: 1,
+    color: accentBlue,
   });
 
-  // Title
-  yPos -= 35;
-  const title = data.leaveType === "carer" ? "CARER'S LEAVE CERTIFICATE" : "ABSENCE FROM WORK CERTIFICATE";
-  const titleWidth = helveticaBold.widthOfTextAtSize(title, 18);
-  page.drawText(title, {
-    x: (width - titleWidth) / 2,
-    y: yPos,
-    size: 18,
-    font: helveticaBold,
-    color: dark,
-  });
+  yPos -= 45;
 
-  yPos -= 40;
-
-  // Patient/Carer Details Section
-  page.drawText(data.leaveType === "carer" ? "CARER DETAILS" : "PATIENT DETAILS", {
+  // Patient Details Section
+  page.drawText("PATIENT DETAILS", {
     x: margin,
     y: yPos,
     size: 10,
     font: helveticaBold,
-    color: gray,
+    color: accentBlue,
   });
 
-  yPos -= 20;
+  yPos -= 25;
 
   // Name
-  page.drawText("Full Name:", {
+  page.drawText("Name:", {
     x: margin,
     y: yPos,
     size: 11,
@@ -137,14 +100,14 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
     color: gray,
   });
   page.drawText(data.patientName, {
-    x: margin + 120,
+    x: margin + 100,
     y: yPos,
     size: 11,
     font: helveticaBold,
     color: dark,
   });
 
-  yPos -= 18;
+  yPos -= 20;
 
   // DOB
   page.drawText("Date of Birth:", {
@@ -155,26 +118,26 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
     color: gray,
   });
   page.drawText(formatDate(data.dateOfBirth), {
-    x: margin + 120,
+    x: margin + 100,
     y: yPos,
     size: 11,
     font: helvetica,
     color: dark,
   });
 
-  yPos -= 30;
+  yPos -= 35;
 
-  // Care recipient (for carer's leave)
+  // Care recipient section (for carer's leave)
   if (data.leaveType === "carer" && data.careRecipientName) {
     page.drawText("PERSON REQUIRING CARE", {
       x: margin,
       y: yPos,
       size: 10,
       font: helveticaBold,
-      color: gray,
+      color: accentBlue,
     });
 
-    yPos -= 20;
+    yPos -= 25;
 
     page.drawText("Name:", {
       x: margin,
@@ -184,14 +147,14 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
       color: gray,
     });
     page.drawText(data.careRecipientName, {
-      x: margin + 120,
+      x: margin + 100,
       y: yPos,
       size: 11,
       font: helveticaBold,
       color: dark,
     });
 
-    yPos -= 18;
+    yPos -= 20;
 
     page.drawText("Relationship:", {
       x: margin,
@@ -201,26 +164,26 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
       color: gray,
     });
     page.drawText(data.careRelationship || "", {
-      x: margin + 120,
+      x: margin + 100,
       y: yPos,
       size: 11,
       font: helvetica,
       color: dark,
     });
 
-    yPos -= 30;
+    yPos -= 35;
   }
 
-  // Certificate Period
+  // Certificate Period Section
   page.drawText("CERTIFICATE PERIOD", {
     x: margin,
     y: yPos,
     size: 10,
     font: helveticaBold,
-    color: gray,
+    color: accentBlue,
   });
 
-  yPos -= 20;
+  yPos -= 25;
 
   page.drawText("From:", {
     x: margin,
@@ -230,14 +193,14 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
     color: gray,
   });
   page.drawText(formatDate(data.unfitFrom), {
-    x: margin + 120,
+    x: margin + 100,
     y: yPos,
     size: 11,
     font: helveticaBold,
     color: dark,
   });
 
-  yPos -= 18;
+  yPos -= 20;
 
   page.drawText("To:", {
     x: margin,
@@ -247,16 +210,16 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
     color: gray,
   });
   page.drawText(formatDate(data.unfitTo), {
-    x: margin + 120,
+    x: margin + 100,
     y: yPos,
     size: 11,
     font: helveticaBold,
     color: dark,
   });
 
-  yPos -= 18;
+  yPos -= 20;
 
-  page.drawText("Total Days:", {
+  page.drawText("Duration:", {
     x: margin,
     y: yPos,
     size: 11,
@@ -264,85 +227,75 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
     color: gray,
   });
   page.drawText(`${data.daysUnfit} day${data.daysUnfit > 1 ? "s" : ""}`, {
-    x: margin + 120,
+    x: margin + 100,
     y: yPos,
     size: 11,
     font: helveticaBold,
     color: dark,
   });
 
-  yPos -= 35;
+  yPos -= 45;
 
-  // Certification statement box
-  const boxHeight = 70;
-  page.drawRectangle({
+  // Certification Statement
+  page.drawText("CERTIFICATION", {
     x: margin,
-    y: yPos - boxHeight + 15,
-    width: width - margin * 2,
-    height: boxHeight,
-    color: rgb(0.99, 0.97, 0.93),
+    y: yPos,
+    size: 10,
+    font: helveticaBold,
+    color: accentBlue,
   });
 
-  // Yellow left border
-  page.drawRectangle({
-    x: margin,
-    y: yPos - boxHeight + 15,
-    width: 4,
-    height: boxHeight,
-    color: mustard,
-  });
+  yPos -= 25;
 
   const certText = data.leaveType === "carer"
-    ? `I certify that ${data.patientName} is required to provide care or support to ${data.careRecipientName} (${data.careRelationship}) due to illness, and is therefore unfit for work for the period stated above.`
-    : `I certify that ${data.patientName} is suffering from a medical condition and is therefore unfit for work for the period stated above.`;
+    ? `I, ${data.pharmacistName}, a registered pharmacist, certify that ${data.patientName} is required to provide care or support to ${data.careRecipientName} (${data.careRelationship}) due to illness, and is therefore unfit for work for the period stated above.`
+    : `I, ${data.pharmacistName}, a registered pharmacist, certify that ${data.patientName} presented with symptoms consistent with illness and is therefore unfit for work for the period stated above.`;
 
   // Word wrap the certification text
-  const maxWidth = width - margin * 2 - 20;
+  const maxWidth = width - margin * 2;
   const words = certText.split(" ");
   let line = "";
-  let lineY = yPos - 10;
+  let lineY = yPos;
 
   for (const word of words) {
     const testLine = line + (line ? " " : "") + word;
-    const testWidth = helvetica.widthOfTextAtSize(testLine, 11);
+    const testWidth = timesRoman.widthOfTextAtSize(testLine, 11);
     if (testWidth > maxWidth && line) {
       page.drawText(line, {
-        x: margin + 12,
+        x: margin,
         y: lineY,
         size: 11,
-        font: helvetica,
+        font: timesRoman,
         color: dark,
       });
       line = word;
-      lineY -= 16;
+      lineY -= 18;
     } else {
       line = testLine;
     }
   }
   if (line) {
     page.drawText(line, {
-      x: margin + 12,
+      x: margin,
       y: lineY,
       size: 11,
-      font: helvetica,
+      font: timesRoman,
       color: dark,
     });
   }
 
-  // Footer section
-  yPos = 150;
+  // Signature section
+  yPos = 180;
 
-  // Line above footer
   page.drawLine({
     start: { x: margin, y: yPos },
-    end: { x: width - margin, y: yPos },
+    end: { x: margin + 200, y: yPos },
     thickness: 1,
-    color: rgb(0.88, 0.88, 0.88),
+    color: dark,
   });
 
-  yPos -= 20;
+  yPos -= 15;
 
-  // Pharmacist details
   page.drawText(data.pharmacistName, {
     x: margin,
     y: yPos,
@@ -353,7 +306,7 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
 
   yPos -= 15;
 
-  page.drawText(`AHPRA Registration: ${data.pharmacistAhpra}`, {
+  page.drawText("Registered Pharmacist", {
     x: margin,
     y: yPos,
     size: 10,
@@ -363,7 +316,7 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
 
   yPos -= 15;
 
-  page.drawText(`Issued: ${formatDate(data.issuedAt)}`, {
+  page.drawText(`AHPRA: ${data.pharmacistAhpra}`, {
     x: margin,
     y: yPos,
     size: 10,
@@ -371,21 +324,19 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
     color: gray,
   });
 
-  yPos -= 20;
-
-  // Verification URL
-  page.drawText(`Verify this certificate: sorryboss.com.au/verify/${data.verificationCode}`, {
-    x: margin,
-    y: yPos,
-    size: 9,
+  // Date on right side
+  page.drawText(`Date: ${formatDate(data.issuedAt)}`, {
+    x: width - margin - 120,
+    y: 180 - 15,
+    size: 10,
     font: helvetica,
-    color: green,
+    color: gray,
   });
 
-  yPos -= 20;
+  // Footer disclaimer
+  yPos = 60;
 
-  // Disclaimer
-  const disclaimer = "This certificate is issued in accordance with the Fair Work Act 2009 (Cth) section 107(3). Registered pharmacists are authorised to provide evidence of illness for the purposes of personal leave and carer's leave. This certificate does not constitute medical advice.";
+  const disclaimer = "This certificate is issued in accordance with the Fair Work Act 2009 (Cth) section 107(3). Registered pharmacists are authorised to provide evidence of illness for the purposes of personal leave and carer's leave.";
   
   const disclaimerWords = disclaimer.split(" ");
   let disclaimerLine = "";
@@ -403,7 +354,7 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
         color: lightGray,
       });
       disclaimerLine = word;
-      disclaimerY -= 12;
+      disclaimerY -= 11;
     } else {
       disclaimerLine = testLine;
     }
