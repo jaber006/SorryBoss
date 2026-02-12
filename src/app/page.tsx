@@ -156,7 +156,7 @@ export default function Home() {
                 { label: "Emergency GP visit", price: "$80–120", crossed: true },
                 { label: "After-hours doctor", price: "$60–95", crossed: true },
                 { label: "Telehealth GP consult", price: "$40–60", crossed: true },
-                { label: "SorryBoss", price: "$24.95", crossed: false },
+                { label: "SorryBoss", price: "$9.95", crossed: false },
               ].map((row, i) => (
                 <div key={i} className="flex justify-between items-center py-4 border-b border-white/10">
                   <span className="text-white/60">{row.label}</span>

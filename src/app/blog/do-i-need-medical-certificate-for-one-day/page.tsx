@@ -124,7 +124,7 @@ export default function OneDayMedicalCertificatePage() {
             <p>If you need a certificate but don&apos;t want to spend hours at a clinic for a minor illness, you have options:</p>
 
             <ol>
-              <li><strong>Pharmacist certificate (fastest):</strong> Services like SorryBoss offer phone consultations with AHPRA-registered pharmacists. 5 minutes, $24.95, certificate emailed instantly.</li>
+              <li><strong>Pharmacist certificate (fastest):</strong> Services like SorryBoss offer phone consultations with AHPRA-registered pharmacists. 5 minutes, $9.95, certificate emailed instantly.</li>
               <li><strong>Telehealth GP:</strong> Video call with a doctor. 15-30 minutes, $40-80.</li>
               <li><strong>In-person GP:</strong> Traditional clinic visit. 1-3 hours including wait time, $40-80+ (may be bulk-billed).</li>
             </ol>
@@ -154,7 +154,7 @@ export default function OneDayMedicalCertificatePage() {
                 Need a certificate? Get one in 5 minutes
               </h3>
               <p className="text-[#FDF8EE]/70 mb-6">
-                Phone consult from bed. AHPRA pharmacist. $24.95 — only charged if issued.
+                Phone consult from bed. AHPRA pharmacist. $9.95 — only charged if issued.
               </p>
               <Link href="/book" className="inline-flex items-center gap-2 bg-[#E8B931] text-[#1A1A1A] px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#FDF8EE] transition-colors">
                 Get Your Certificate →

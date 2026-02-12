@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
         termsAcceptedAt: new Date(),
         status: "pending",
         paymentStatus: "pending",
-        amountCents: 2495,
+        amountCents: 995,
       },
     });
 
@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
                 : "Personal Leave Certificate Consultation",
               description: "Phone consultation with AHPRA-registered pharmacist. You will only be charged if a certificate is issued.",
             },
-            unit_amount: 2495, // $24.95 in cents
+            unit_amount: 995, // $9.95 in cents
           },
           quantity: 1,
         },

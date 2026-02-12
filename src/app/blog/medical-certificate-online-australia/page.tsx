@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Get a Medical Certificate Online in Australia (2026) | SorryBoss",
-  description: "Get a medical certificate online in Australia in minutes. Phone consult with AHPRA pharmacist, certificate emailed instantly. $24.95, only charged if issued.",
+  description: "Get a medical certificate online in Australia in minutes. Phone consult with AHPRA pharmacist, certificate emailed instantly. $9.95, only charged if issued.",
   keywords: "medical certificate online, online medical certificate australia, sick certificate online, telehealth medical certificate, get medical certificate fast",
   openGraph: {
     title: "Get a Medical Certificate Online in Australia (2026)",
@@ -67,7 +67,7 @@ export default function MedicalCertificateOnlinePage() {
             </div>
             <div className="bg-white rounded-xl p-4 border border-black/5 text-center">
               <DollarSign className="w-6 h-6 mx-auto mb-2 text-[#3D8B37]" />
-              <div className="text-2xl font-semibold">$24.95</div>
+              <div className="text-2xl font-semibold">$9.95</div>
               <div className="text-sm text-[#6B6560]">Flat fee</div>
             </div>
             <div className="bg-white rounded-xl p-4 border border-black/5 text-center">
@@ -124,7 +124,7 @@ export default function MedicalCertificateOnlinePage() {
               </li>
               <li>
                 <strong>Complete payment authorization</strong><br />
-                Your card is authorized for $24.95 but <em>only charged if a certificate is issued</em>. No cert = no charge.
+                Your card is authorized for $9.95 but <em>only charged if a certificate is issued</em>. No cert = no charge.
               </li>
               <li>
                 <strong>Receive your phone call</strong><br />
@@ -218,7 +218,7 @@ export default function MedicalCertificateOnlinePage() {
                 Get your certificate in 5 minutes
               </h3>
               <p className="text-[#FDF8EE]/70 mb-6">
-                Phone consult from bed. AHPRA pharmacist. $24.95 — only if issued.
+                Phone consult from bed. AHPRA pharmacist. $9.95 — only if issued.
               </p>
               <Link 
                 href="/book" 

@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
         termsAcceptedAt: new Date(),
         status: "pending",
         paymentStatus: "pending",
-        amountCents: 2495,
+        amountCents: 995,
       },
     });
 
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
 
     // Create Payment Intent (authorize only, capture later)
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: 2495, // $24.95 in cents
+      amount: 995, // $9.95 in cents
       currency: "aud",
       capture_method: "manual", // Authorize only, capture when cert is issued
       receipt_email: email,

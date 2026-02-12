@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "SorryBoss — Sick Cert in Minutes",
-    description: "Get an Absence from Work Certificate from an Australian registered pharmacist. Phone consult from bed. $24.95, no cert no charge.",
+    description: "Get an Absence from Work Certificate from an Australian registered pharmacist. Phone consult from bed. $9.95, no cert no charge.",
     url: "https://www.sorryboss.com.au",
     siteName: "SorryBoss",
     locale: "en_AU",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "SorryBoss — Sick Cert in Minutes",
-    description: "Get an Absence from Work Certificate from an Australian registered pharmacist. $24.95, no cert no charge.",
+    description: "Get an Absence from Work Certificate from an Australian registered pharmacist. $9.95, no cert no charge.",
     // Images auto-generated from twitter-image.tsx
   },
   robots: {
@@ -95,7 +95,7 @@ const jsonLd = {
       },
       offers: {
         "@type": "Offer",
-        price: "24.95",
+        price: "9.95",
         priceCurrency: "AUD",
         availability: "https://schema.org/InStock",
       },
@@ -141,7 +141,7 @@ const jsonLd = {
           name: "How much does a sick certificate cost?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "SorryBoss charges $24.95 for an Absence from Work Certificate. If our pharmacist can't issue you a certificate, you pay nothing — no cert, no charge guaranteed.",
+            text: "SorryBoss charges $9.95 for an Absence from Work Certificate. If our pharmacist can't issue you a certificate, you pay nothing — no cert, no charge guaranteed.",
           },
         },
       ],

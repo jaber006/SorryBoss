@@ -479,7 +479,7 @@ export default function CarerBookingPage() {
                 <h4 className="font-semibold mb-4">Order summary</h4>
                 <div className="flex justify-between items-center pb-4 border-b border-black/10">
                   <span className="text-[#6B6560]">Carer&apos;s leave consultation & certificate</span>
-                  <span className="font-semibold">$24.95</span>
+                  <span className="font-semibold">$9.95</span>
                 </div>
                 <p className="text-xs text-[#6B6560] mt-4">
                   You will only be charged if a certificate is issued. If our pharmacist cannot issue a certificate, you pay nothing.
