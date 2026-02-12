@@ -30,10 +30,10 @@ export default function TermsPage() {
             To use our service, you must:
           </p>
           <ul className="list-disc pl-6 mb-4">
-            <li>Be at least 18 years of age</li>
             <li>Be located in Australia at the time of consultation</li>
             <li>Provide accurate and truthful information about your condition</li>
             <li>Have a valid Australian phone number for the consultation call</li>
+            <li>If under 16, have parental/guardian consent</li>
           </ul>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">3. Medical Certificates</h2>
