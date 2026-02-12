@@ -14,9 +14,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 function generateVerificationCode(): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const randomBytes = new Uint8Array(8);
+  crypto.getRandomValues(randomBytes);
   let code = "";
   for (let i = 0; i < 8; i++) {
-    code += chars.charAt(Math.floor(Math.random() * chars.length));
+    code += chars.charAt(randomBytes[i] % chars.length);
   }
   return code;
 }
@@ -106,8 +108,8 @@ export async function POST(
       }
     }
 
-    // Generate PDF
-    let pdfBuffer: Buffer | null = null;
+    // Generate PDF - MUST succeed
+    let pdfBuffer: Buffer;
     try {
       pdfBuffer = await generateCertificatePDF({
         verificationCode,
@@ -125,9 +127,19 @@ export async function POST(
       });
     } catch (pdfError) {
       console.error("PDF generation failed:", pdfError);
+      // Roll back: delete the certificate record
+      await prisma.certificate.delete({ where: { id: certificate.id } });
+      await prisma.consultation.update({
+        where: { id },
+        data: { status: "in_progress", certificateId: null },
+      });
+      return NextResponse.json(
+        { error: "Failed to generate certificate PDF", details: pdfError instanceof Error ? pdfError.message : String(pdfError) },
+        { status: 500 }
+      );
     }
 
-    // Send email with certificate
+    // Send email with certificate - MUST succeed
     try {
       await sendCertificateEmail({
         to: consultation.email,
@@ -146,6 +158,13 @@ export async function POST(
       });
     } catch (emailError) {
       console.error("Email send failed:", emailError);
+      // Don't roll back certificate, but warn admin
+      return NextResponse.json({
+        success: true,
+        certificateId: certificate.id,
+        verificationCode,
+        warning: "Certificate issued but email failed. Use resend button.",
+      });
     }
 
     // Audit log
