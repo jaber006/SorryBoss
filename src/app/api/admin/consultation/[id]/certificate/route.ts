@@ -60,8 +60,11 @@ export async function GET(
     });
   } catch (error) {
     console.error("Certificate download error:", error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    const errorStack = error instanceof Error ? error.stack : "";
+    console.error("Error details:", { message: errorMessage, stack: errorStack });
     return NextResponse.json(
-      { error: "Failed to generate certificate" },
+      { error: "Failed to generate certificate", details: errorMessage },
       { status: 500 }
     );
   }
