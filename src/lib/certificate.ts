@@ -1,4 +1,5 @@
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import { SIGNATURE_BASE64 } from "./signature";
 
 type CertificateData = {
   verificationCode: string;
@@ -285,7 +286,21 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
   }
 
   // Signature section
-  yPos = 180;
+  yPos = 200;
+
+  // Embed signature image
+  const signatureBytes = Buffer.from(SIGNATURE_BASE64, "base64");
+  const signatureImage = await pdfDoc.embedPng(signatureBytes);
+  const sigDims = signatureImage.scale(0.25); // Scale down to fit
+  
+  page.drawImage(signatureImage, {
+    x: margin,
+    y: yPos - sigDims.height + 20,
+    width: sigDims.width,
+    height: sigDims.height,
+  });
+
+  yPos = 150;
 
   page.drawLine({
     start: { x: margin, y: yPos },
@@ -327,7 +342,7 @@ export async function generateCertificatePDF(data: CertificateData): Promise<Buf
   // Date on right side
   page.drawText(`Date: ${formatDate(data.issuedAt)}`, {
     x: width - margin - 120,
-    y: 180 - 15,
+    y: 150 - 15,
     size: 10,
     font: helvetica,
     color: gray,
