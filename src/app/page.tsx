@@ -173,7 +173,7 @@ export default function Home() {
 
           <div className="bg-white/5 border border-white/10 rounded-3xl p-10 text-center backdrop-blur-sm">
             <div className="text-7xl font-normal text-[#E8B931]" style={{ fontFamily: "'Instrument Serif', serif" }}>
-              $9<span className="text-4xl">.95</span>
+              $13<span className="text-4xl">.99</span>
             </div>
             <p className="text-[15px] text-white/50 mt-2">Only charged if a certificate is issued</p>
             <p className="text-white/70 mt-6 leading-relaxed">
