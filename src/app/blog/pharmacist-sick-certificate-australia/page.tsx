@@ -157,7 +157,7 @@ export default function PharmacistSickCertificatePage() {
                   </tr>
                   <tr className="bg-[#F0FDF4]">
                     <td className="py-3 pr-4 font-semibold">SorryBoss (Pharmacist)</td>
-                    <td className="py-3 pr-4 font-semibold text-[#3D8B37]">$9.95</td>
+                    <td className="py-3 pr-4 font-semibold text-[#3D8B37]">$13.99</td>
                     <td className="py-3 font-semibold text-[#3D8B37]">5 minutes</td>
                   </tr>
                 </tbody>
@@ -186,7 +186,7 @@ export default function PharmacistSickCertificatePage() {
                 Need a sick certificate now?
               </h3>
               <p className="text-[#FDF8EE]/70 mb-6">
-                Get an AHPRA-registered pharmacist certificate in minutes. $9.95, only if issued.
+                Get an AHPRA-registered pharmacist certificate in minutes. $13.99, only if issued.
               </p>
               <Link 
                 href="/book" 

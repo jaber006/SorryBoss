@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "How to Get a Carer's Leave Certificate in Australia | SorryBoss",
-  description: "Need time off to care for a sick family member? Learn how to get a carer's leave certificate online. Pharmacist-issued, Fair Work compliant, $9.95.",
+  description: "Need time off to care for a sick family member? Learn how to get a carer's leave certificate online. Pharmacist-issued, Fair Work compliant, $13.99.",
   keywords: "carers leave certificate, carer's leave, caring for sick family member, carers leave australia, carers certificate",
   openGraph: {
     title: "How to Get a Carer's Leave Certificate in Australia",
@@ -205,7 +205,7 @@ export default function CarersLeaveCertificatePage() {
                 Need to care for a loved one?
               </h3>
               <p className="text-[#FDF8EE]/70 mb-6">
-                Get a carer&apos;s leave certificate in minutes. $9.95 — only charged if issued.
+                Get a carer&apos;s leave certificate in minutes. $13.99 — only charged if issued.
               </p>
               <Link 
                 href="/book/carer" 

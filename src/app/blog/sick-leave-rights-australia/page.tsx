@@ -191,7 +191,7 @@ export default function SickLeaveRightsPage() {
 
             <p>If you need a certificate but don&apos;t want to sit in a waiting room while sick:</p>
             <ul>
-              <li><strong>Pharmacist certificate (5 mins, $9.95):</strong> Phone consult, certificate emailed</li>
+              <li><strong>Pharmacist certificate (5 mins, $13.99):</strong> Phone consult, certificate emailed</li>
               <li><strong>Telehealth GP (15-30 mins, $40-80):</strong> Video call with a doctor</li>
               <li><strong>In-person GP (1-3 hours, $40-80+):</strong> Traditional clinic visit</li>
             </ul>
@@ -202,7 +202,7 @@ export default function SickLeaveRightsPage() {
                 Need a sick certificate?
               </h3>
               <p className="text-[#FDF8EE]/70 mb-6">
-                Get one in 5 minutes. Phone consult with AHPRA pharmacist. $9.95 — only if issued.
+                Get one in 5 minutes. Phone consult with AHPRA pharmacist. $13.99 — only if issued.
               </p>
               <Link href="/book" className="inline-flex items-center gap-2 bg-[#E8B931] text-[#1A1A1A] px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#FDF8EE] transition-colors">
                 Get Your Certificate →

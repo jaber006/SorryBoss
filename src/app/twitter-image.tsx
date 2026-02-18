@@ -96,7 +96,7 @@ export default async function Image() {
             }}
           >
             <span style={{ fontSize: 48 }}>💰</span>
-            <span style={{ fontSize: 20, color: "#94a3b8" }}>$9.95</span>
+            <span style={{ fontSize: 20, color: "#94a3b8" }}>$13.99</span>
           </div>
         </div>
 

@@ -156,7 +156,7 @@ export default function Home() {
                 { label: "Emergency GP visit", price: "$80–120", crossed: true },
                 { label: "After-hours doctor", price: "$60–95", crossed: true },
                 { label: "Telehealth GP consult", price: "$40–60", crossed: true },
-                { label: "SorryBoss", price: "$9.95", crossed: false },
+                { label: "SorryBoss", price: "$13.99", crossed: false },
               ].map((row, i) => (
                 <div key={i} className="flex justify-between items-center py-4 border-b border-white/10">
                   <span className="text-white/60">{row.label}</span>
@@ -205,7 +205,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why $9.95 */}
+      {/* Why $13.99 */}
       <section className="py-20 px-6 bg-[#FDF8EE]">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-[#E8B931] mb-4">Why So Cheap?</p>
@@ -226,7 +226,7 @@ export default function Home() {
               Unfortunately, pharmacist consultations aren&apos;t Medicare-funded like GP visits. So until the government catches up, we&apos;re keeping it as low as we can.
             </p>
             <p className="text-[#1A1A1A] font-medium">
-              $9.95. No hidden fees. No cert, no charge.
+              $13.99. No hidden fees. No cert, no charge.
             </p>
           </div>
         </div>

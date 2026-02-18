@@ -463,7 +463,7 @@ export default function PersonalBookingPage() {
                 <h4 className="font-semibold mb-4">Order summary</h4>
                 <div className="flex justify-between items-center pb-4 border-b border-black/10">
                   <span className="text-[#6B6560]">Pharmacist consultation & certificate</span>
-                  <span className="font-semibold">$9.95</span>
+                  <span className="font-semibold">$13.99</span>
                 </div>
                 <p className="text-xs text-[#6B6560] mt-4">
                   You will only be charged if a certificate is issued. If our pharmacist cannot issue a certificate, you pay nothing.
@@ -504,7 +504,7 @@ export default function PersonalBookingPage() {
             <PaymentForm
               clientSecret={clientSecret}
               consultationId={consultationId}
-              amount={2495}
+              amount={1399}
               customerName={`${form.firstName} ${form.lastName}`}
               customerPhone={form.phone}
               appointmentDate={form.preferredDate}
