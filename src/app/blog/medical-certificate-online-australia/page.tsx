@@ -3,14 +3,18 @@ import { ArrowLeft, Clock, DollarSign, Shield, Phone } from "lucide-react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Get a Medical Certificate Online in Australia (2026) | SorryBoss",
+  title: "Get a Medical Certificate Online in Australia (2025) | SorryBoss",
   description: "Get a medical certificate online in Australia in minutes. Phone consult with AHPRA pharmacist, certificate emailed instantly. $13.99, only charged if issued.",
-  keywords: "medical certificate online, online medical certificate australia, sick certificate online, telehealth medical certificate, get medical certificate fast",
+  keywords: ["medical certificate online", "online medical certificate australia", "sick certificate online", "telehealth medical certificate", "get medical certificate fast"],
+  alternates: {
+    canonical: "https://www.sorryboss.com.au/blog/medical-certificate-online-australia",
+  },
   openGraph: {
-    title: "Get a Medical Certificate Online in Australia (2026)",
+    title: "Get a Medical Certificate Online in Australia (2025)",
     description: "Skip the waiting room. Get a medical certificate online in 5 minutes from an AHPRA-registered pharmacist.",
     type: "article",
-    publishedTime: "2026-02-13",
+    publishedTime: "2025-02-13",
+    url: "https://www.sorryboss.com.au/blog/medical-certificate-online-australia",
   },
 };
 

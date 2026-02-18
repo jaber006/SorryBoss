@@ -31,11 +31,11 @@ export default function Home() {
           className="animate-fade-up animate-fade-up-1 text-5xl md:text-7xl lg:text-[96px] font-normal leading-[1.02] tracking-tight max-w-4xl"
           style={{ fontFamily: "'Instrument Serif', serif" }}
         >
-          Too sick for the<br />waiting room<em className="text-[#E8B931]">?</em>
+          Online Medical Certificate<br />in Minutes<em className="text-[#E8B931]">.</em>
         </h1>
 
         <p className="animate-fade-up animate-fade-up-2 text-lg md:text-xl text-[#6B6560] max-w-xl leading-relaxed mt-6">
-          Get an Absence from Work Certificate from an Australian registered pharmacist. Phone consult from your bed. Certificate emailed in minutes.
+          Get a <Link href="/blog/absence-from-work-certificate" className="text-[#3D8B37] hover:underline">sick certificate</Link> from an Australian registered pharmacist. Phone consult from your bed. <Link href="/blog/same-day-medical-certificate" className="text-[#3D8B37] hover:underline">Certificate emailed in minutes</Link>.
         </p>
 
         <div className="animate-fade-up animate-fade-up-3 flex flex-wrap justify-center gap-4 mt-12">
@@ -300,21 +300,73 @@ export default function Home() {
         </Link>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-6 border-t border-black/6 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="text-center md:text-left">
-          <div className="flex items-center gap-2 justify-center md:justify-start mb-2" style={{ fontFamily: "'Instrument Serif', serif" }}>
-            <span className="w-2 h-2 bg-[#E8B931] rounded-full" />
-            <span className="text-lg">SorryBoss</span>
+      {/* Helpful Resources Section */}
+      <section className="py-16 px-6 bg-white border-t border-black/6">
+        <div className="max-w-6xl mx-auto">
+          <h2 
+            className="text-2xl md:text-3xl font-normal mb-8 text-center"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+          >
+            Helpful Resources
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Link href="/blog/can-pharmacist-write-medical-certificate" className="group p-6 bg-[#FDF8EE] rounded-xl border border-black/5 hover:border-[#E8B931]/50 transition-all">
+              <h3 className="font-semibold mb-2 group-hover:text-[#3D8B37] transition-colors">Can a Pharmacist Write a Medical Certificate?</h3>
+              <p className="text-sm text-[#6B6560]">Yes — learn about pharmacist certificates under Australian law.</p>
+            </Link>
+            <Link href="/blog/sick-leave-rights-australia" className="group p-6 bg-[#FDF8EE] rounded-xl border border-black/5 hover:border-[#E8B931]/50 transition-all">
+              <h3 className="font-semibold mb-2 group-hover:text-[#3D8B37] transition-colors">Sick Leave Rights in Australia</h3>
+              <p className="text-sm text-[#6B6560]">Know your entitlements under the Fair Work Act 2009.</p>
+            </Link>
+            <Link href="/blog/medical-certificate-mental-health-day" className="group p-6 bg-[#FDF8EE] rounded-xl border border-black/5 hover:border-[#E8B931]/50 transition-all">
+              <h3 className="font-semibold mb-2 group-hover:text-[#3D8B37] transition-colors">Mental Health Day Certificate</h3>
+              <p className="text-sm text-[#6B6560]">Yes, you can take mental health days. Here&apos;s how.</p>
+            </Link>
           </div>
-          <p className="text-xs text-[#6B6560]/60 max-w-xl leading-relaxed">
-            SorryBoss is a service operated by AHPRA-registered pharmacists. Certificates are issued in accordance with the Fair Work Act 2009 (s107). A pharmacist consultation is not a substitute for medical advice. If your symptoms persist or worsen, please see your doctor.
-          </p>
+          <div className="text-center mt-8">
+            <Link href="/blog" className="text-[#3D8B37] font-medium hover:underline">
+              View all guides →
+            </Link>
+          </div>
         </div>
-        <div className="flex gap-6">
-          <Link href="/privacy" className="text-sm text-[#6B6560] hover:text-[#1A1A1A] transition-colors">Privacy Policy</Link>
-          <Link href="/terms" className="text-sm text-[#6B6560] hover:text-[#1A1A1A] transition-colors">Terms</Link>
-          <Link href="/contact" className="text-sm text-[#6B6560] hover:text-[#1A1A1A] transition-colors">Contact</Link>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-6 border-t border-black/6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-8 mb-8">
+          <div className="md:col-span-2">
+            <div className="flex items-center gap-2 mb-3" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              <span className="w-2 h-2 bg-[#E8B931] rounded-full" />
+              <span className="text-lg">SorryBoss</span>
+            </div>
+            <p className="text-xs text-[#6B6560]/60 max-w-md leading-relaxed">
+              SorryBoss is a service operated by AHPRA-registered pharmacists. Certificates are issued in accordance with the Fair Work Act 2009 (s107). A pharmacist consultation is not a substitute for medical advice. If your symptoms persist or worsen, please see your doctor.
+            </p>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-3 text-sm">Services</h4>
+            <ul className="space-y-2 text-sm text-[#6B6560]">
+              <li><Link href="/book/personal" className="hover:text-[#1A1A1A] transition-colors">Personal Leave Certificate</Link></li>
+              <li><Link href="/book/carer" className="hover:text-[#1A1A1A] transition-colors">Carer&apos;s Leave Certificate</Link></li>
+              <li><Link href="/blog/same-day-medical-certificate" className="hover:text-[#1A1A1A] transition-colors">Same-Day Certificate</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-3 text-sm">Resources</h4>
+            <ul className="space-y-2 text-sm text-[#6B6560]">
+              <li><Link href="/blog" className="hover:text-[#1A1A1A] transition-colors">Blog</Link></li>
+              <li><Link href="/blog/sick-leave-certificate-cost" className="hover:text-[#1A1A1A] transition-colors">Pricing Guide</Link></li>
+              <li><Link href="/blog/pharmacist-sick-certificate-australia" className="hover:text-[#1A1A1A] transition-colors">Pharmacist Certificates</Link></li>
+            </ul>
+          </div>
+        </div>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-black/6">
+          <p className="text-xs text-[#6B6560]/60">© {new Date().getFullYear()} SorryBoss. All rights reserved.</p>
+          <div className="flex gap-6">
+            <Link href="/privacy" className="text-sm text-[#6B6560] hover:text-[#1A1A1A] transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-sm text-[#6B6560] hover:text-[#1A1A1A] transition-colors">Terms</Link>
+            <Link href="/contact" className="text-sm text-[#6B6560] hover:text-[#1A1A1A] transition-colors">Contact</Link>
+          </div>
         </div>
       </footer>
     </main>

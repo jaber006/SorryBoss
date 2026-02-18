@@ -5,12 +5,16 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "How to Get a Carer's Leave Certificate in Australia | SorryBoss",
   description: "Need time off to care for a sick family member? Learn how to get a carer's leave certificate online. Pharmacist-issued, Fair Work compliant, $13.99.",
-  keywords: "carers leave certificate, carer's leave, caring for sick family member, carers leave australia, carers certificate",
+  keywords: ["carers leave certificate", "carer's leave", "caring for sick family member", "carers leave australia", "carers certificate"],
+  alternates: {
+    canonical: "https://www.sorryboss.com.au/blog/carers-leave-certificate",
+  },
   openGraph: {
     title: "How to Get a Carer's Leave Certificate in Australia",
     description: "Take time off to care for a sick family member. Get a Fair Work compliant certificate in minutes.",
     type: "article",
-    publishedTime: "2026-02-13",
+    publishedTime: "2025-02-13",
+    url: "https://www.sorryboss.com.au/blog/carers-leave-certificate",
   },
 };
 
@@ -231,6 +235,14 @@ export default function CarersLeaveCertificatePage() {
             <p>
               You can request unpaid carer&apos;s leave. Full-time and part-time employees can take up to 2 days of unpaid carer&apos;s leave per occasion if they&apos;ve exhausted their paid leave.
             </p>
+
+            <h2 style={{ fontFamily: "'Instrument Serif', serif" }}>Related Articles</h2>
+            <ul>
+              <li><Link href="/blog/sick-leave-rights-australia" className="text-[#3D8B37] hover:underline">Sick Leave Rights in Australia: Complete Guide</Link></li>
+              <li><Link href="/blog/can-pharmacist-write-medical-certificate" className="text-[#3D8B37] hover:underline">Can a Pharmacist Write a Medical Certificate?</Link></li>
+              <li><Link href="/blog/absence-from-work-certificate" className="text-[#3D8B37] hover:underline">Absence from Work Certificate vs Medical Certificate</Link></li>
+              <li><Link href="/blog/do-i-need-medical-certificate-for-one-day" className="text-[#3D8B37] hover:underline">Do I Need a Medical Certificate for 1 Day Off?</Link></li>
+            </ul>
           </div>
 
           <footer className="mt-12 pt-8 border-t border-black/10">

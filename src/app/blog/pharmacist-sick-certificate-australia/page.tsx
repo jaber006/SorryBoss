@@ -5,12 +5,16 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Can a Pharmacist Issue a Sick Certificate in Australia? | SorryBoss",
   description: "Yes, pharmacists can legally issue medical certificates in Australia under the Fair Work Act 2009. Learn how it works, what conditions apply, and how to get one online.",
-  keywords: "pharmacist sick certificate, medical certificate online, sick note australia, fair work act medical certificate, absence from work certificate",
+  keywords: ["pharmacist sick certificate", "medical certificate online", "sick note australia", "fair work act medical certificate", "absence from work certificate"],
+  alternates: {
+    canonical: "https://www.sorryboss.com.au/blog/pharmacist-sick-certificate-australia",
+  },
   openGraph: {
     title: "Can a Pharmacist Issue a Sick Certificate in Australia?",
     description: "Yes, pharmacists can legally issue medical certificates under the Fair Work Act 2009. Here's everything you need to know.",
     type: "article",
-    publishedTime: "2026-02-13",
+    publishedTime: "2025-02-13",
+    url: "https://www.sorryboss.com.au/blog/pharmacist-sick-certificate-australia",
   },
 };
 
@@ -217,6 +221,14 @@ export default function PharmacistSickCertificatePage() {
             <p>
               No. Pharmacist consultations for sick certificates don&apos;t go through Medicare, which is why they can be faster and more affordable.
             </p>
+
+            <h2 style={{ fontFamily: "'Instrument Serif', serif" }}>Related Articles</h2>
+            <ul>
+              <li><Link href="/blog/can-pharmacist-write-medical-certificate" className="text-[#3D8B37] hover:underline">Can a Pharmacist Write a Medical Certificate?</Link></li>
+              <li><Link href="/blog/absence-from-work-certificate" className="text-[#3D8B37] hover:underline">Absence from Work Certificate vs Medical Certificate</Link></li>
+              <li><Link href="/blog/sick-leave-certificate-cost" className="text-[#3D8B37] hover:underline">Sick Leave Certificate Cost Australia</Link></li>
+              <li><Link href="/blog/medical-certificate-without-seeing-doctor" className="text-[#3D8B37] hover:underline">How to Get a Medical Certificate Without Seeing a Doctor</Link></li>
+            </ul>
           </div>
 
           {/* Author/Date */}

@@ -1,4 +1,17 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | SorryBoss",
+  description: "SorryBoss terms of service. Understand the terms and conditions for using our pharmacist certificate service in Australia.",
+  alternates: {
+    canonical: "https://www.sorryboss.com.au/terms",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function TermsPage() {
   return (
