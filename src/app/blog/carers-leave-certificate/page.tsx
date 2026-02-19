@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: "Need time off to care for a sick family member? Learn how to get a carer's leave certificate online. Pharmacist-issued, Fair Work compliant, $13.99.",
   keywords: ["carers leave certificate", "carer's leave", "caring for sick family member", "carers leave australia", "carers certificate"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/blog/carers-leave-certificate",
+    canonical: "https://sorryboss.com.au/blog/carers-leave-certificate",
   },
   openGraph: {
     title: "How to Get a Carer's Leave Certificate in Australia",
     description: "Take time off to care for a sick family member. Get a Fair Work compliant certificate in minutes.",
     type: "article",
     publishedTime: "2025-02-13",
-    url: "https://www.sorryboss.com.au/blog/carers-leave-certificate",
+    url: "https://sorryboss.com.au/blog/carers-leave-certificate",
   },
 };
 

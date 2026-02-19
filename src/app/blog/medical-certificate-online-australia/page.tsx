@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: "Get a medical certificate online in Australia in minutes. Phone consult with AHPRA pharmacist, certificate emailed instantly. $13.99, only charged if issued.",
   keywords: ["medical certificate online", "online medical certificate australia", "sick certificate online", "telehealth medical certificate", "get medical certificate fast"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/blog/medical-certificate-online-australia",
+    canonical: "https://sorryboss.com.au/blog/medical-certificate-online-australia",
   },
   openGraph: {
     title: "Get a Medical Certificate Online in Australia (2025)",
     description: "Skip the waiting room. Get a medical certificate online in 5 minutes from an AHPRA-registered pharmacist.",
     type: "article",
     publishedTime: "2025-02-13",
-    url: "https://www.sorryboss.com.au/blog/medical-certificate-online-australia",
+    url: "https://sorryboss.com.au/blog/medical-certificate-online-australia",
   },
 };
 

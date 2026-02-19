@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: "What's the difference between an Absence from Work Certificate and a Medical Certificate? Under Australian law, both are valid for sick leave. Learn which one you need.",
   keywords: ["absence from work certificate", "medical certificate vs absence from work certificate", "pharmacist certificate", "sick certificate australia", "fair work act certificate", "absence certificate"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/blog/absence-from-work-certificate",
+    canonical: "https://sorryboss.com.au/blog/absence-from-work-certificate",
   },
   openGraph: {
     title: "Absence from Work Certificate vs Medical Certificate",
     description: "Under Australian law, both certificates are valid for sick leave. Here's everything you need to know.",
     type: "article",
     publishedTime: "2025-02-21",
-    url: "https://www.sorryboss.com.au/blog/absence-from-work-certificate",
+    url: "https://sorryboss.com.au/blog/absence-from-work-certificate",
   },
 };
 
@@ -81,14 +81,14 @@ const articleSchema = {
     "name": "SorryBoss",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.sorryboss.com.au/logo.png"
+      "url": "https://sorryboss.com.au/logo.png"
     }
   },
   "datePublished": "2025-02-21",
   "dateModified": "2025-02-21",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://www.sorryboss.com.au/blog/absence-from-work-certificate"
+    "@id": "https://sorryboss.com.au/blog/absence-from-work-certificate"
   }
 };
 
@@ -101,19 +101,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.sorryboss.com.au"
+      "item": "https://sorryboss.com.au"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Blog",
-      "item": "https://www.sorryboss.com.au/blog"
+      "item": "https://sorryboss.com.au/blog"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Absence from Work Certificate",
-      "item": "https://www.sorryboss.com.au/blog/absence-from-work-certificate"
+      "item": "https://sorryboss.com.au/blog/absence-from-work-certificate"
     }
   ]
 };

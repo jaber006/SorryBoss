@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: "Need a medical certificate today? Get a same-day sick certificate in minutes via phone consult. No waiting room, no video, certificate emailed instantly.",
   keywords: ["same day medical certificate", "urgent sick certificate", "medical certificate today", "fast medical certificate", "instant sick note"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/blog/same-day-medical-certificate",
+    canonical: "https://sorryboss.com.au/blog/same-day-medical-certificate",
   },
   openGraph: {
     title: "Same Day Medical Certificate: How to Get One Fast",
     description: "Sick and need a certificate urgently? Here's how to get one in minutes.",
     type: "article",
     publishedTime: "2025-02-13",
-    url: "https://www.sorryboss.com.au/blog/same-day-medical-certificate",
+    url: "https://sorryboss.com.au/blog/same-day-medical-certificate",
   },
 };
 

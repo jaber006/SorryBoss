@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   description: "Expert guides on medical certificates, sick leave rights, and workplace health in Australia. Learn about pharmacist certificates, Fair Work Act requirements, and how to get a certificate online.",
   keywords: ["medical certificate australia", "sick leave rights", "pharmacist certificate", "absence from work certificate", "fair work act sick leave"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/blog",
+    canonical: "https://sorryboss.com.au/blog",
   },
   openGraph: {
     title: "Medical Certificate Blog | SorryBoss",
     description: "Expert guides on medical certificates, sick leave rights, and workplace health in Australia.",
-    url: "https://www.sorryboss.com.au/blog",
+    url: "https://sorryboss.com.au/blog",
     type: "website",
   },
 };
@@ -111,13 +111,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.sorryboss.com.au"
+      "item": "https://sorryboss.com.au"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Blog",
-      "item": "https://www.sorryboss.com.au/blog"
+      "item": "https://sorryboss.com.au/blog"
     }
   ]
 };

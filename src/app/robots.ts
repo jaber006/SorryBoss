@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/book/success', '/book/confirm/'],
       },
     ],
-    sitemap: 'https://www.sorryboss.com.au/sitemap.xml',
+    sitemap: 'https://sorryboss.com.au/sitemap.xml',
   }
 }

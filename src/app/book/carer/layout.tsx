@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   description: "Get a carer's leave certificate when you need to care for a sick family member. Phone consultation with AHPRA pharmacist. $13.99 — no cert, no charge.",
   keywords: ["carers leave certificate", "carer certificate australia", "caring for sick family member", "fair work carers leave"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/book/carer",
+    canonical: "https://sorryboss.com.au/book/carer",
   },
   openGraph: {
     title: "Carer's Leave Certificate | SorryBoss",
     description: "Need to care for a sick family member? Get a carer's leave certificate in 5 minutes. $13.99.",
-    url: "https://www.sorryboss.com.au/book/carer",
+    url: "https://sorryboss.com.au/book/carer",
     type: "website",
   },
 };

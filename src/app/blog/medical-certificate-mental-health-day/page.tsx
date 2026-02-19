@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: "Can you get a medical certificate for a mental health day in Australia? Yes — mental health is treated the same as physical illness under the Fair Work Act. Learn how to get one for $13.99.",
   keywords: ["medical certificate mental health day australia", "mental health day certificate", "sick leave mental health australia", "mental health sick leave", "stress leave certificate", "anxiety medical certificate"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/blog/medical-certificate-mental-health-day",
+    canonical: "https://sorryboss.com.au/blog/medical-certificate-mental-health-day",
   },
   openGraph: {
     title: "Medical Certificate for Mental Health Day Australia",
     description: "Yes, you can use sick leave for mental health in Australia. Here's how to get a certificate.",
     type: "article",
     publishedTime: "2025-02-21",
-    url: "https://www.sorryboss.com.au/blog/medical-certificate-mental-health-day",
+    url: "https://sorryboss.com.au/blog/medical-certificate-mental-health-day",
   },
 };
 
@@ -81,14 +81,14 @@ const articleSchema = {
     "name": "SorryBoss",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.sorryboss.com.au/logo.png"
+      "url": "https://sorryboss.com.au/logo.png"
     }
   },
   "datePublished": "2025-02-21",
   "dateModified": "2025-02-21",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://www.sorryboss.com.au/blog/medical-certificate-mental-health-day"
+    "@id": "https://sorryboss.com.au/blog/medical-certificate-mental-health-day"
   }
 };
 
@@ -101,19 +101,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.sorryboss.com.au"
+      "item": "https://sorryboss.com.au"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Blog",
-      "item": "https://www.sorryboss.com.au/blog"
+      "item": "https://sorryboss.com.au/blog"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Medical Certificate for Mental Health Day",
-      "item": "https://www.sorryboss.com.au/blog/medical-certificate-mental-health-day"
+      "item": "https://sorryboss.com.au/blog/medical-certificate-mental-health-day"
     }
   ]
 };

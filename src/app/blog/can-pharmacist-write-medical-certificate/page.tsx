@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: "Yes, pharmacists can legally write medical certificates in Australia under the Fair Work Act 2009. Learn how pharmacist-issued certificates work, what they cover, and how to get one online for just $13.99.",
   keywords: ["can a pharmacist write a medical certificate", "pharmacist medical certificate australia", "pharmacist sick certificate", "absence from work certificate", "fair work act medical certificate", "AHPRA pharmacist certificate"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/blog/can-pharmacist-write-medical-certificate",
+    canonical: "https://sorryboss.com.au/blog/can-pharmacist-write-medical-certificate",
   },
   openGraph: {
     title: "Can a Pharmacist Write a Medical Certificate in Australia?",
     description: "Yes — pharmacists are legally authorised to write medical certificates under Australian law. Here's everything you need to know.",
     type: "article",
     publishedTime: "2025-02-21",
-    url: "https://www.sorryboss.com.au/blog/can-pharmacist-write-medical-certificate",
+    url: "https://sorryboss.com.au/blog/can-pharmacist-write-medical-certificate",
   },
 };
 
@@ -81,14 +81,14 @@ const articleSchema = {
     "name": "SorryBoss",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.sorryboss.com.au/logo.png"
+      "url": "https://sorryboss.com.au/logo.png"
     }
   },
   "datePublished": "2025-02-21",
   "dateModified": "2025-02-21",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://www.sorryboss.com.au/blog/can-pharmacist-write-medical-certificate"
+    "@id": "https://sorryboss.com.au/blog/can-pharmacist-write-medical-certificate"
   }
 };
 
@@ -101,19 +101,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.sorryboss.com.au"
+      "item": "https://sorryboss.com.au"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Blog",
-      "item": "https://www.sorryboss.com.au/blog"
+      "item": "https://sorryboss.com.au/blog"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Can a Pharmacist Write a Medical Certificate?",
-      "item": "https://www.sorryboss.com.au/blog/can-pharmacist-write-medical-certificate"
+      "item": "https://sorryboss.com.au/blog/can-pharmacist-write-medical-certificate"
     }
   ]
 };

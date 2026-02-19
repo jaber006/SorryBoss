@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: "Medical certificate costs in Australia range from $0 (bulk billed) to $120+ (after-hours). Compare GP vs pharmacist certificates. Get a sick cert for $13.99 at SorryBoss.",
   keywords: ["sick leave certificate cost australia", "medical certificate cost", "how much does a medical certificate cost", "sick certificate price", "gp certificate cost", "cheap medical certificate australia"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/blog/sick-leave-certificate-cost",
+    canonical: "https://sorryboss.com.au/blog/sick-leave-certificate-cost",
   },
   openGraph: {
     title: "Sick Leave Certificate Cost Australia 2025",
     description: "Complete guide to medical certificate costs in Australia. Compare all your options from $13.99 pharmacist certs to $120+ emergency GP visits.",
     type: "article",
     publishedTime: "2025-02-21",
-    url: "https://www.sorryboss.com.au/blog/sick-leave-certificate-cost",
+    url: "https://sorryboss.com.au/blog/sick-leave-certificate-cost",
   },
 };
 
@@ -81,14 +81,14 @@ const articleSchema = {
     "name": "SorryBoss",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.sorryboss.com.au/logo.png"
+      "url": "https://sorryboss.com.au/logo.png"
     }
   },
   "datePublished": "2025-02-21",
   "dateModified": "2025-02-21",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://www.sorryboss.com.au/blog/sick-leave-certificate-cost"
+    "@id": "https://sorryboss.com.au/blog/sick-leave-certificate-cost"
   }
 };
 
@@ -101,19 +101,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.sorryboss.com.au"
+      "item": "https://sorryboss.com.au"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Blog",
-      "item": "https://www.sorryboss.com.au/blog"
+      "item": "https://sorryboss.com.au/blog"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Sick Leave Certificate Cost",
-      "item": "https://www.sorryboss.com.au/blog/sick-leave-certificate-cost"
+      "item": "https://sorryboss.com.au/blog/sick-leave-certificate-cost"
     }
   ]
 };

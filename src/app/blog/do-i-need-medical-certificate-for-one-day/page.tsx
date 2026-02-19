@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: "When does your employer need a medical certificate? Learn the rules around sick leave evidence in Australia and when you can self-certify.",
   keywords: ["medical certificate one day", "sick note for 1 day", "do i need doctors note", "sick leave evidence australia", "single day sick leave"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/blog/do-i-need-medical-certificate-for-one-day",
+    canonical: "https://sorryboss.com.au/blog/do-i-need-medical-certificate-for-one-day",
   },
   openGraph: {
     title: "Do I Need a Medical Certificate for 1 Day Off Sick?",
     description: "When your employer can (and can't) ask for a medical certificate in Australia.",
     type: "article",
     publishedTime: "2025-02-13",
-    url: "https://www.sorryboss.com.au/blog/do-i-need-medical-certificate-for-one-day",
+    url: "https://sorryboss.com.au/blog/do-i-need-medical-certificate-for-one-day",
   },
 };
 

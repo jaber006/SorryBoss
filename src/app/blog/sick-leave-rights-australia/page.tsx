@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: "Know your sick leave rights. How many days, do casuals get sick leave, can your boss deny it? Everything about personal leave under the Fair Work Act.",
   keywords: ["sick leave rights australia", "personal leave entitlements", "fair work act sick leave", "how many sick days australia", "casual sick leave"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/blog/sick-leave-rights-australia",
+    canonical: "https://sorryboss.com.au/blog/sick-leave-rights-australia",
   },
   openGraph: {
     title: "Sick Leave Rights in Australia: Complete Guide (2025)",
     description: "Everything you need to know about your sick leave entitlements under Australian law.",
     type: "article",
     publishedTime: "2025-02-13",
-    url: "https://www.sorryboss.com.au/blog/sick-leave-rights-australia",
+    url: "https://sorryboss.com.au/blog/sick-leave-rights-australia",
   },
 };
 

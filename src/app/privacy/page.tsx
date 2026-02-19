@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | SorryBoss",
   description: "SorryBoss privacy policy. Learn how we collect, use, and protect your personal and health information when you use our pharmacist certificate service.",
   alternates: {
-    canonical: "https://www.sorryboss.com.au/privacy",
+    canonical: "https://sorryboss.com.au/privacy",
   },
   robots: {
     index: true,

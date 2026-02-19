@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: "Yes, pharmacists can legally issue medical certificates in Australia under the Fair Work Act 2009. Learn how it works, what conditions apply, and how to get one online.",
   keywords: ["pharmacist sick certificate", "medical certificate online", "sick note australia", "fair work act medical certificate", "absence from work certificate"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/blog/pharmacist-sick-certificate-australia",
+    canonical: "https://sorryboss.com.au/blog/pharmacist-sick-certificate-australia",
   },
   openGraph: {
     title: "Can a Pharmacist Issue a Sick Certificate in Australia?",
     description: "Yes, pharmacists can legally issue medical certificates under the Fair Work Act 2009. Here's everything you need to know.",
     type: "article",
     publishedTime: "2025-02-13",
-    url: "https://www.sorryboss.com.au/blog/pharmacist-sick-certificate-australia",
+    url: "https://sorryboss.com.au/blog/pharmacist-sick-certificate-australia",
   },
 };
 

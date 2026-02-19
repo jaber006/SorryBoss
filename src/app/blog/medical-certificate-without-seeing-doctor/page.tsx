@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   description: "You don't need to see a GP for a medical certificate in Australia. Pharmacists, telehealth services, and phone consultations can issue valid certificates. Get one in 5 minutes for $13.99.",
   keywords: ["medical certificate without seeing doctor", "medical certificate without doctor", "get medical certificate online", "sick certificate without gp", "medical certificate phone", "telehealth medical certificate australia"],
   alternates: {
-    canonical: "https://www.sorryboss.com.au/blog/medical-certificate-without-seeing-doctor",
+    canonical: "https://sorryboss.com.au/blog/medical-certificate-without-seeing-doctor",
   },
   openGraph: {
     title: "How to Get a Medical Certificate Without Seeing a Doctor",
     description: "Skip the waiting room. Here are all the ways to get a valid medical certificate in Australia without seeing a GP in person.",
     type: "article",
     publishedTime: "2025-02-21",
-    url: "https://www.sorryboss.com.au/blog/medical-certificate-without-seeing-doctor",
+    url: "https://sorryboss.com.au/blog/medical-certificate-without-seeing-doctor",
   },
 };
 
@@ -81,14 +81,14 @@ const articleSchema = {
     "name": "SorryBoss",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.sorryboss.com.au/logo.png"
+      "url": "https://sorryboss.com.au/logo.png"
     }
   },
   "datePublished": "2025-02-21",
   "dateModified": "2025-02-21",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://www.sorryboss.com.au/blog/medical-certificate-without-seeing-doctor"
+    "@id": "https://sorryboss.com.au/blog/medical-certificate-without-seeing-doctor"
   }
 };
 
@@ -101,19 +101,19 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 1,
       "name": "Home",
-      "item": "https://www.sorryboss.com.au"
+      "item": "https://sorryboss.com.au"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Blog",
-      "item": "https://www.sorryboss.com.au/blog"
+      "item": "https://sorryboss.com.au/blog"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Medical Certificate Without Seeing Doctor",
-      "item": "https://www.sorryboss.com.au/blog/medical-certificate-without-seeing-doctor"
+      "item": "https://sorryboss.com.au/blog/medical-certificate-without-seeing-doctor"
     }
   ]
 };
