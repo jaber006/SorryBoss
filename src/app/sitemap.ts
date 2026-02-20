@@ -39,7 +39,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     
-    // NEW blog posts (2025)
+    // NEW SEO blog posts (February 2025)
+    {
+      url: `${baseUrl}/blog/medical-certificate-backdated`,
+      lastModified: new Date('2025-02-22'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/cheap-medical-certificate-online`,
+      lastModified: new Date('2025-02-22'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/medical-certificate-covid`,
+      lastModified: new Date('2025-02-22'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/medical-certificate-centrelink`,
+      lastModified: new Date('2025-02-22'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/sick-certificate-pharmacy`,
+      lastModified: new Date('2025-02-22'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/blog/medical-certificate-for-work`,
+      lastModified: new Date('2025-02-22'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    
+    // NEW blog posts (2025-02-21)
     {
       url: `${baseUrl}/blog/can-pharmacist-write-medical-certificate`,
       lastModified: new Date('2025-02-21'),

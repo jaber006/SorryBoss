@@ -18,14 +18,59 @@ export const metadata: Metadata = {
 };
 
 const posts = [
-  // NEW POSTS (2025)
+  // NEW SEO POSTS (2025-02-22)
+  {
+    slug: "medical-certificate-for-work",
+    title: "Medical Certificate for Work: Everything Australian Employees Need to Know",
+    excerpt: "Complete guide to medical certificates for work — when you need one, who can issue it, your Fair Work Act rights, and how to get one in 5 minutes.",
+    date: "2025-02-22",
+    readTime: "10 min read",
+    featured: true,
+  },
+  {
+    slug: "medical-certificate-backdated",
+    title: "Can You Get a Medical Certificate Backdated in Australia?",
+    excerpt: "Need a certificate for yesterday? Learn the rules around backdated medical certificates and when SorryBoss can help.",
+    date: "2025-02-22",
+    readTime: "7 min read",
+    featured: true,
+  },
+  {
+    slug: "cheap-medical-certificate-online",
+    title: "Cheapest Medical Certificate Online Australia 2025",
+    excerpt: "Compare medical certificate costs in Australia. From $0 bulk-billed GP to $24.95 pharmacist phone consultation — find the best value.",
+    date: "2025-02-22",
+    readTime: "8 min read",
+    featured: true,
+  },
+  {
+    slug: "sick-certificate-pharmacy",
+    title: "Getting a Sick Certificate from a Pharmacy in Australia",
+    excerpt: "Yes, pharmacists can issue sick certificates! Learn about walk-in pharmacy vs phone consultations and why you don't need to leave bed.",
+    date: "2025-02-22",
+    readTime: "7 min read",
+  },
+  {
+    slug: "medical-certificate-covid",
+    title: "Medical Certificate for COVID in Australia: Do You Still Need One?",
+    excerpt: "COVID is now treated like any other illness. Learn when you need a certificate, how to get one, and current isolation guidance.",
+    date: "2025-02-22",
+    readTime: "7 min read",
+  },
+  {
+    slug: "medical-certificate-centrelink",
+    title: "Medical Certificate for Centrelink: What You Need to Know",
+    excerpt: "Centrelink has specific requirements different from employer sick leave. Learn what they accept and when you need a GP certificate.",
+    date: "2025-02-22",
+    readTime: "8 min read",
+  },
+  // EXISTING POSTS (2025-02-21)
   {
     slug: "can-pharmacist-write-medical-certificate",
     title: "Can a Pharmacist Write a Medical Certificate in Australia?",
     excerpt: "Yes — pharmacists can legally write medical certificates under the Fair Work Act 2009. Here's everything you need to know about pharmacist-issued certificates.",
     date: "2025-02-21",
     readTime: "8 min read",
-    featured: true,
   },
   {
     slug: "medical-certificate-mental-health-day",
@@ -33,7 +78,6 @@ const posts = [
     excerpt: "Can you get a medical certificate for a mental health day? Yes — mental health is treated the same as physical illness under Australian law.",
     date: "2025-02-21",
     readTime: "9 min read",
-    featured: true,
   },
   {
     slug: "medical-certificate-without-seeing-doctor",
@@ -41,12 +85,11 @@ const posts = [
     excerpt: "You don't need to see a GP for a medical certificate. Pharmacists, telehealth, and phone consultations can issue valid certificates. Here's how.",
     date: "2025-02-21",
     readTime: "8 min read",
-    featured: true,
   },
   {
     slug: "sick-leave-certificate-cost",
     title: "Sick Leave Certificate Cost Australia 2025: Complete Price Guide",
-    excerpt: "Medical certificate costs range from $0 to $150+. Compare GP vs pharmacist certificates and find the most affordable option at $13.99.",
+    excerpt: "Medical certificate costs range from $0 to $150+. Compare GP vs pharmacist certificates and find the most affordable option at $24.95.",
     date: "2025-02-21",
     readTime: "7 min read",
   },
@@ -57,7 +100,7 @@ const posts = [
     date: "2025-02-21",
     readTime: "8 min read",
   },
-  // EXISTING POSTS
+  // ORIGINAL POSTS
   {
     slug: "same-day-medical-certificate",
     title: "How to Get a Same-Day Medical Certificate (Fast)",
@@ -242,7 +285,7 @@ export default function BlogPage() {
               Need a medical certificate now?
             </h2>
             <p className="text-[#FDF8EE]/70 mb-6 max-w-lg mx-auto">
-              Get an Absence from Work Certificate from an AHPRA-registered pharmacist in 5 minutes. $13.99 — only if issued.
+              Get an Absence from Work Certificate from an AHPRA-registered pharmacist in 5 minutes. $24.95 — only if issued.
             </p>
             <Link 
               href="/book" 
