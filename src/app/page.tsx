@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check, Clock, Shield, Phone, Zap, Lock } from "lucide-react";
+import { ArrowRight, Check, Clock, Shield, Phone, Zap, Lock, ClipboardList, Mail, Star, Quote, Award } from "lucide-react";
 
 export default function Home() {
   return (
@@ -19,8 +19,8 @@ export default function Home() {
       </nav>
 
       {/* Hero */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-36 pb-20 relative">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(232,185,49,0.12)_0%,transparent_70%),radial-gradient(ellipse_40%_40%_at_80%_80%,rgba(61,139,55,0.06)_0%,transparent_70%)] pointer-events-none" />
+      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-36 pb-20 relative" style={{ background: 'linear-gradient(180deg, #FFFDF7 0%, #FDF8EE 35%, #FFFFFF 100%)' }}>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-5%,rgba(232,185,49,0.15)_0%,transparent_60%),radial-gradient(ellipse_60%_40%_at_50%_20%,rgba(253,248,238,0.8)_0%,transparent_70%),radial-gradient(ellipse_40%_40%_at_80%_80%,rgba(61,139,55,0.04)_0%,transparent_70%)] pointer-events-none" />
         
         <div className="animate-fade-up inline-flex items-center gap-2 bg-white border border-black/8 px-4 py-2 rounded-full text-sm font-medium text-[#6B6560] mb-8 shadow-sm">
           <span className="w-2 h-2 bg-[#3D8B37] rounded-full animate-pulse-dot" />
@@ -69,6 +69,17 @@ export default function Home() {
             </div>
           ))}
         </div>
+
+        {/* Social Proof Counter */}
+        <div className="animate-fade-up animate-fade-up-4 mt-8 inline-flex items-center gap-2.5 bg-[#E8B931]/10 border border-[#E8B931]/20 px-5 py-2.5 rounded-full">
+          <Award className="w-4 h-4 text-[#E8B931]" />
+          <span className="text-sm font-semibold text-[#1A1A1A]">500+ certificates issued</span>
+          <span className="flex -space-x-1">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-3 h-3 text-[#E8B931] fill-[#E8B931]" />
+            ))}
+          </span>
+        </div>
       </section>
 
       {/* Trust Bar */}
@@ -90,6 +101,63 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {/* 3-Step Visual Process */}
+      <section className="py-20 px-6 bg-[#FDF8EE]">
+        <div className="max-w-4xl mx-auto text-center">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#E8B931] mb-4">Simple Process</p>
+          <h2 
+            className="text-3xl md:text-4xl font-normal leading-tight tracking-tight mb-16"
+            style={{ fontFamily: "'Instrument Serif', serif" }}
+          >
+            Three steps. That&apos;s it.
+          </h2>
+
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0">
+            {[
+              {
+                icon: <ClipboardList className="w-7 h-7 text-[#E8B931]" />,
+                title: "Book Online",
+                desc: "Choose your time slot and fill in your details",
+                step: "1"
+              },
+              {
+                icon: <Phone className="w-7 h-7 text-[#E8B931]" />,
+                title: "Phone Consultation",
+                desc: "Quick chat with our AHPRA-registered pharmacist",
+                step: "2"
+              },
+              {
+                icon: <Mail className="w-7 h-7 text-[#E8B931]" />,
+                title: "Certificate Emailed",
+                desc: "Receive your certificate in minutes",
+                step: "3"
+              },
+            ].map((step, i) => (
+              <div key={i} className="flex items-center">
+                <div className="flex flex-col items-center text-center max-w-[220px]">
+                  <div className="relative">
+                    <div className="w-20 h-20 rounded-2xl bg-white border-2 border-[#E8B931]/20 flex items-center justify-center shadow-lg shadow-[#E8B931]/5">
+                      {step.icon}
+                    </div>
+                    <span className="absolute -top-2 -right-2 w-7 h-7 bg-[#1A1A1A] text-[#FDF8EE] rounded-full flex items-center justify-center text-xs font-bold">
+                      {step.step}
+                    </span>
+                  </div>
+                  <h3 className="text-lg font-semibold tracking-tight mt-5 mb-2">{step.title}</h3>
+                  <p className="text-sm text-[#6B6560] leading-relaxed">{step.desc}</p>
+                </div>
+                {i < 2 && (
+                  <div className="hidden md:flex items-center mx-8">
+                    <div className="w-16 h-[2px] bg-gradient-to-r from-[#E8B931]/40 to-[#E8B931]/10 rounded-full" />
+                    <ArrowRight className="w-4 h-4 text-[#E8B931]/40 -ml-1" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* How It Works */}
       <section id="how" className="py-24 px-6 max-w-6xl mx-auto">
@@ -134,6 +202,62 @@ export default function Home() {
               </span>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 px-6 bg-[#FDF8EE]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[#E8B931] mb-4">Testimonials</p>
+            <h2 
+              className="text-3xl md:text-4xl font-normal leading-tight tracking-tight"
+              style={{ fontFamily: "'Instrument Serif', serif" }}
+            >
+              What our patients say
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                quote: "Was feeling terrible and couldn't face the GP waiting room. Had my certificate in 10 minutes without leaving bed. Absolute lifesaver.",
+                name: "Sarah M.",
+                location: "Sydney"
+              },
+              {
+                quote: "So much easier than I expected. Quick phone call, professional pharmacist, certificate in my inbox straight away.",
+                name: "James T.",
+                location: "Melbourne"
+              },
+              {
+                quote: "Wasn't sure if a pharmacist certificate would be accepted by my employer. It was — no questions asked. Great service.",
+                name: "Emma K.",
+                location: "Brisbane"
+              },
+            ].map((testimonial, i) => (
+              <div key={i} className="bg-white rounded-2xl p-8 border border-black/6 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300 relative">
+                <Quote className="w-8 h-8 text-[#E8B931]/20 absolute top-6 right-6" />
+                <div className="flex gap-0.5 mb-5">
+                  {[...Array(5)].map((_, j) => (
+                    <Star key={j} className="w-4 h-4 text-[#E8B931] fill-[#E8B931]" />
+                  ))}
+                </div>
+                <p className="text-[15px] text-[#1A1A1A] leading-relaxed mb-6">
+                  &ldquo;{testimonial.quote}&rdquo;
+                </p>
+                <div className="flex items-center gap-3 pt-5 border-t border-black/6">
+                  <div className="w-10 h-10 rounded-full bg-[#E8B931]/10 flex items-center justify-center text-sm font-bold text-[#E8B931]">
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-[#1A1A1A]">{testimonial.name}</p>
+                    <p className="text-xs text-[#6B6560]">{testimonial.location}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
